@@ -1,0 +1,1500 @@
+[
+  {
+    "name": "Merlin",
+    "role": "Mid",
+    "damage_type": "",
+    "image_url": "https://wiki.smite2.com/images/thumb/GodCard_Merlin.png/250px-GodCard_Merlin.png?544c9",
+    "stats": {
+      "health": "2 (+0)",
+      "mana": "2 (+0)",
+      "physical_power": "0",
+      "magical_power": "0",
+      "physical_protection": "18",
+      "magical_protection": "30",
+      "attack_speed": "",
+      "movement_speed": "375 (+0)"
+    },
+    "counter_gods": [],
+    "counter_items": [],
+    "synergy_items": [],
+    "meta_role": "Mid",
+    "scaling_info": {
+      "base_value": "591",
+      "scaling_value": "93"
+    }
+  },
+  {
+    "name": "Mordred",
+    "role": "SoloJungle",
+    "damage_type": "",
+    "image_url": "https://wiki.smite2.com/images/thumb/SkinArt_MordredS2_Default.jpg/250px-SkinArt_MordredS2_Default.jpg?67f08",
+    "stats": {
+      "health": "1.7 (+0.2)",
+      "mana": "2.25 (+0.25)",
+      "physical_power": "0",
+      "magical_power": "0",
+      "physical_protection": "18",
+      "magical_protection": "30",
+      "attack_speed": "",
+      "movement_speed": "442 (+0)"
+    },
+    "counter_gods": [],
+    "counter_items": [],
+    "synergy_items": [],
+    "meta_role": "SoloJungle",
+    "scaling_info": {
+      "base_value": "632.2",
+      "scaling_value": "91.85"
+    }
+  },
+  {
+    "name": "Cernunnos",
+    "role": "Carry",
+    "damage_type": "",
+    "image_url": "https://wiki.smite2.com/images/thumb/SkinArt_CernunnosS2_Default.jpg/250px-SkinArt_CernunnosS2_Default.jpg?46407",
+    "stats": {
+      "health": "1.7 (+0.2)",
+      "mana": "2.25 (+0.25)",
+      "physical_power": "0",
+      "magical_power": "0",
+      "physical_protection": "18",
+      "magical_protection": "30",
+      "attack_speed": "",
+      "movement_speed": "430 (+0)"
+    },
+    "counter_gods": [],
+    "counter_items": [],
+    "synergy_items": [],
+    "meta_role": "Carry",
+    "scaling_info": {
+      "base_value": "586.9",
+      "scaling_value": "77.55"
+    }
+  },
+  {
+    "name": "The Morrigan",
+    "role": "MidJungle",
+    "damage_type": "",
+    "image_url": "https://wiki.smite2.com/images/thumb/SkinArt_The_MorriganS2_Default.jpg/250px-SkinArt_The_MorriganS2_Default.jpg?cfce2",
+    "stats": {
+      "health": "1.7 (+0.2)",
+      "mana": "2.32 (+0.26)",
+      "physical_power": "0",
+      "magical_power": "0",
+      "physical_protection": "18",
+      "magical_protection": "30",
+      "attack_speed": "",
+      "movement_speed": "430 (+0)"
+    },
+    "counter_gods": [],
+    "counter_items": [],
+    "synergy_items": [],
+    "meta_role": "MidJungle",
+    "scaling_info": {
+      "base_value": "574.8",
+      "scaling_value": "76.4"
+    }
+  },
+  {
+    "name": "Guan Yu",
+    "role": "Solo",
+    "damage_type": "",
+    "image_url": "https://wiki.smite2.com/images/thumb/GodCard_Guan_Yu.png/250px-GodCard_Guan_Yu.png?ac80c",
+    "stats": {
+      "health": "2 (+0)",
+      "mana": "2 (+0)",
+      "physical_power": "0",
+      "magical_power": "0",
+      "physical_protection": "18",
+      "magical_protection": "30",
+      "attack_speed": "",
+      "movement_speed": "375 (+0)"
+    },
+    "counter_gods": [],
+    "counter_items": [],
+    "synergy_items": [],
+    "meta_role": "Solo",
+    "scaling_info": {
+      "base_value": "647",
+      "scaling_value": "102"
+    }
+  },
+  {
+    "name": "Hua Mulan",
+    "role": "Solo",
+    "damage_type": "",
+    "image_url": "https://wiki.smite2.com/images/thumb/T_HuaMulanS2_Default.png/250px-T_HuaMulanS2_Default.png?7a4b1",
+    "stats": {
+      "health": "1.7 (+0.2)",
+      "mana": "2.25 (+0.25)",
+      "physical_power": "0",
+      "magical_power": "0",
+      "physical_protection": "18",
+      "magical_protection": "30",
+      "attack_speed": "",
+      "movement_speed": "442 (+0)"
+    },
+    "counter_gods": [],
+    "counter_items": [],
+    "synergy_items": [],
+    "meta_role": "Solo",
+    "scaling_info": {
+      "strength": "5",
+      "base_value": "623.2",
+      "scaling_value": "82.93"
+    }
+  },
+  {
+    "name": "Jing Wei",
+    "role": "Carry",
+    "damage_type": "",
+    "image_url": "https://wiki.smite2.com/images/thumb/SkinArt_Jing_WeiS2_Default.jpg/250px-SkinArt_Jing_WeiS2_Default.jpg?68c99",
+    "stats": {
+      "health": "1.7 (+0.2)",
+      "mana": "2.25 (+0.25)",
+      "physical_power": "0",
+      "magical_power": "0",
+      "physical_protection": "18",
+      "magical_protection": "30",
+      "attack_speed": "",
+      "movement_speed": "430 (+0)"
+    },
+    "counter_gods": [],
+    "counter_items": [],
+    "synergy_items": [],
+    "meta_role": "Carry",
+    "scaling_info": {
+      "strength": "10",
+      "base_value": "595.3",
+      "scaling_value": "86.86"
+    }
+  },
+  {
+    "name": "Nu Wa",
+    "role": "Mid",
+    "damage_type": "",
+    "image_url": "https://wiki.smite2.com/images/thumb/T_NuWaS2_Default.png/250px-T_NuWaS2_Default.png?7350a",
+    "stats": {
+      "health": "1.7 (+0.2)",
+      "mana": "2.34 (+0.26)",
+      "physical_power": "0",
+      "magical_power": "0",
+      "physical_protection": "18",
+      "magical_protection": "30",
+      "attack_speed": "",
+      "movement_speed": "365 (+0)"
+    },
+    "counter_gods": [],
+    "counter_items": [],
+    "synergy_items": [],
+    "meta_role": "Mid",
+    "scaling_info": {
+      "base_value": "591.8",
+      "scaling_value": "92.62"
+    }
+  },
+  {
+    "name": "Sun Wukong",
+    "role": "File:S2 Role .png",
+    "damage_type": "",
+    "image_url": "https://wiki.smite2.com/images/thumb/NewUI_Pantheon2_Chinese.png/25px-NewUI_Pantheon2_Chinese.png?357a8",
+    "stats": {
+      "health": "(+)",
+      "mana": "(+0)",
+      "physical_power": "0",
+      "magical_power": "0",
+      "physical_protection": "18",
+      "magical_protection": "30",
+      "attack_speed": "",
+      "movement_speed": "(+0)"
+    },
+    "counter_gods": [],
+    "counter_items": [],
+    "synergy_items": [],
+    "meta_role": "File:S2 Role .png"
+  },
+  {
+    "name": "Anhur",
+    "role": "Carry",
+    "damage_type": "",
+    "image_url": "https://wiki.smite2.com/images/thumb/SkinArt_AnhurS2_Default.jpg/250px-SkinArt_AnhurS2_Default.jpg?6b8d5",
+    "stats": {
+      "health": "1.7 (+0.2)",
+      "mana": "2.25 (+0.25)",
+      "physical_power": "0",
+      "magical_power": "0",
+      "physical_protection": "18",
+      "magical_protection": "30",
+      "attack_speed": "",
+      "movement_speed": "430 (+0)"
+    },
+    "counter_gods": [],
+    "counter_items": [],
+    "synergy_items": [],
+    "meta_role": "Carry",
+    "scaling_info": {
+      "base_value": "587",
+      "scaling_value": "77.55"
+    }
+  },
+  {
+    "name": "Anubis",
+    "role": "Mid",
+    "damage_type": "",
+    "image_url": "https://wiki.smite2.com/images/thumb/SkinArt_AnubisS2_Default.jpg/250px-SkinArt_AnubisS2_Default.jpg?9431e",
+    "stats": {
+      "health": "1.75 (+0.2)",
+      "mana": "2.32 (+0.26)",
+      "physical_power": "0",
+      "magical_power": "0",
+      "physical_protection": "18",
+      "magical_protection": "30",
+      "attack_speed": "",
+      "movement_speed": "430 (+0)"
+    },
+    "counter_gods": [],
+    "counter_items": [],
+    "synergy_items": [],
+    "meta_role": "Mid",
+    "scaling_info": {
+      "base_value": "586.9",
+      "scaling_value": "77.55"
+    }
+  },
+  {
+    "name": "Geb",
+    "role": "Support",
+    "damage_type": "",
+    "image_url": "https://wiki.smite2.com/images/thumb/T_GebS2_Default.png/250px-T_GebS2_Default.png?dab0e",
+    "stats": {
+      "health": "1.77 (+0.21)",
+      "mana": "2.5 (+0.25)",
+      "physical_power": "0",
+      "magical_power": "0",
+      "physical_protection": "18",
+      "magical_protection": "30",
+      "attack_speed": "",
+      "movement_speed": "375 (+0)"
+    },
+    "counter_gods": [],
+    "counter_items": [],
+    "synergy_items": [],
+    "meta_role": "Support",
+    "scaling_info": {
+      "base_value": "672.3",
+      "scaling_value": "105.3"
+    }
+  },
+  {
+    "name": "Khepri",
+    "role": "Support",
+    "damage_type": "",
+    "image_url": "https://wiki.smite2.com/images/thumb/T_KhepriS2_Default.png/250px-T_KhepriS2_Default.png?35c2b",
+    "stats": {
+      "health": "1.77 (+0.21)",
+      "mana": "2.5 (+0.25)",
+      "physical_power": "0",
+      "magical_power": "0",
+      "physical_protection": "18",
+      "magical_protection": "30",
+      "attack_speed": "",
+      "movement_speed": "375 (+0)"
+    },
+    "counter_gods": [],
+    "counter_items": [],
+    "synergy_items": [],
+    "meta_role": "Support",
+    "scaling_info": {
+      "intelligence": "10",
+      "base_value": "672.3",
+      "scaling_value": "105.3"
+    }
+  },
+  {
+    "name": "Neith",
+    "role": "Carry",
+    "damage_type": "",
+    "image_url": "https://wiki.smite2.com/images/thumb/SkinArt_NeithS2_Default.jpg/250px-SkinArt_NeithS2_Default.jpg?7ec22",
+    "stats": {
+      "health": "1.7 (+0.2)",
+      "mana": "2.25 (+0.25)",
+      "physical_power": "0",
+      "magical_power": "0",
+      "physical_protection": "18",
+      "magical_protection": "30",
+      "attack_speed": "",
+      "movement_speed": "430 (+0)"
+    },
+    "counter_gods": [],
+    "counter_items": [],
+    "synergy_items": [],
+    "meta_role": "Carry",
+    "scaling_info": {
+      "intelligence": "10",
+      "base_value": "586.9",
+      "scaling_value": "77.55"
+    }
+  },
+  {
+    "name": "Ra",
+    "role": "Mid",
+    "damage_type": "",
+    "image_url": "https://wiki.smite2.com/images/thumb/T_RaS2_Default.png/250px-T_RaS2_Default.png?03bb5",
+    "stats": {
+      "health": "1.7 (+0.2)",
+      "mana": "2.34 (+0.26)",
+      "physical_power": "0",
+      "magical_power": "0",
+      "physical_protection": "18",
+      "magical_protection": "30",
+      "attack_speed": "",
+      "movement_speed": "365 (+0)"
+    },
+    "counter_gods": [],
+    "counter_items": [],
+    "synergy_items": [],
+    "meta_role": "Mid",
+    "scaling_info": {
+      "intelligence": "20",
+      "strength": "10",
+      "base_value": "591.8",
+      "scaling_value": "92.62"
+    }
+  },
+  {
+    "name": "Sobek",
+    "role": "SupportSolo",
+    "damage_type": "",
+    "image_url": "https://wiki.smite2.com/images/thumb/T_SobekS2_Default.png/250px-T_SobekS2_Default.png?443bf",
+    "stats": {
+      "health": "1.77 (+2.1)",
+      "mana": "2.25 (+0.25)",
+      "physical_power": "0",
+      "magical_power": "0",
+      "physical_protection": "18",
+      "magical_protection": "30",
+      "attack_speed": "",
+      "movement_speed": "375 (+0)"
+    },
+    "counter_gods": [],
+    "counter_items": [],
+    "synergy_items": [],
+    "meta_role": "SupportSolo",
+    "scaling_info": {
+      "base_value": "626.4",
+      "scaling_value": "101.4"
+    }
+  },
+  {
+    "name": "Achilles",
+    "role": "Solo",
+    "damage_type": "",
+    "image_url": "https://wiki.smite2.com/images/thumb/T_AchillesS2_Default.png/250px-T_AchillesS2_Default.png?35745",
+    "stats": {
+      "health": "1.7 (+0.2)",
+      "mana": "2.25 (+0.25)",
+      "physical_power": "0",
+      "magical_power": "0",
+      "physical_protection": "18",
+      "magical_protection": "30",
+      "attack_speed": "",
+      "movement_speed": "442 (+0)"
+    },
+    "counter_gods": [],
+    "counter_items": [],
+    "synergy_items": [],
+    "meta_role": "Solo",
+    "scaling_info": {
+      "strength": "3",
+      "base_value": "623.2",
+      "scaling_value": "82.93"
+    }
+  },
+  {
+    "name": "Aphrodite",
+    "role": "MidSupport",
+    "damage_type": "",
+    "image_url": "https://wiki.smite2.com/images/thumb/T_AphroditeS2_Default.png/250px-T_AphroditeS2_Default.png?eb17b",
+    "stats": {
+      "health": "1.77 (+0.21)",
+      "mana": "2.5 (+0.25)",
+      "physical_power": "0",
+      "magical_power": "0",
+      "physical_protection": "18",
+      "magical_protection": "30",
+      "attack_speed": "",
+      "movement_speed": "375 (+0)"
+    },
+    "counter_gods": [],
+    "counter_items": [],
+    "synergy_items": [],
+    "meta_role": "MidSupport",
+    "scaling_info": {
+      "base_value": "672.3",
+      "scaling_value": "105.3"
+    }
+  },
+  {
+    "name": "Apollo",
+    "role": "Carry",
+    "damage_type": "",
+    "image_url": "https://wiki.smite2.com/images/thumb/GodCard_Apollo.png/250px-GodCard_Apollo.png?184d1",
+    "stats": {
+      "health": "1.7 (+0.2)",
+      "mana": "2.14 (+0)",
+      "physical_power": "0",
+      "magical_power": "0",
+      "physical_protection": "18",
+      "magical_protection": "30",
+      "attack_speed": "",
+      "movement_speed": "365 (+0)"
+    },
+    "counter_gods": [],
+    "counter_items": [],
+    "synergy_items": [],
+    "meta_role": "Carry",
+    "scaling_info": {
+      "base_value": "591.4",
+      "scaling_value": "92.6"
+    }
+  },
+  {
+    "name": "Ares",
+    "role": "Support",
+    "damage_type": "",
+    "image_url": "https://wiki.smite2.com/images/thumb/SkinArt_AresS2_Default.jpg/250px-SkinArt_AresS2_Default.jpg?ebdca",
+    "stats": {
+      "health": "(+)",
+      "mana": "(+)",
+      "physical_power": "0",
+      "magical_power": "0",
+      "physical_protection": "18",
+      "magical_protection": "30",
+      "attack_speed": "",
+      "movement_speed": "(+)"
+    },
+    "counter_gods": [],
+    "counter_items": [],
+    "synergy_items": [],
+    "meta_role": "Support"
+  },
+  {
+    "name": "Artemis",
+    "role": "Carry",
+    "damage_type": "",
+    "image_url": "https://wiki.smite2.com/images/thumb/T_ArtemisS2_Default.png/250px-T_ArtemisS2_Default.png?f0f17",
+    "stats": {
+      "health": "1.7 (+0.2)",
+      "mana": "2.14 (+0.24)",
+      "physical_power": "0",
+      "magical_power": "0",
+      "physical_protection": "18",
+      "magical_protection": "30",
+      "attack_speed": "",
+      "movement_speed": "375 (+0)"
+    },
+    "counter_gods": [],
+    "counter_items": [],
+    "synergy_items": [],
+    "meta_role": "Carry",
+    "scaling_info": {
+      "base_value": "591.38",
+      "scaling_value": "92.62"
+    }
+  },
+  {
+    "name": "Athena",
+    "role": "Support",
+    "damage_type": "",
+    "image_url": "https://wiki.smite2.com/images/thumb/SkinArt_AthenaS2_Default.jpg/250px-SkinArt_AthenaS2_Default.jpg?f0101",
+    "stats": {
+      "health": "1.82 (+0.211)",
+      "mana": "2.25 (+0.25)",
+      "physical_power": "0",
+      "magical_power": "0",
+      "physical_protection": "18",
+      "magical_protection": "30",
+      "attack_speed": "",
+      "movement_speed": "442 (+0)"
+    },
+    "counter_gods": [],
+    "counter_items": [],
+    "synergy_items": [],
+    "meta_role": "Support",
+    "scaling_info": {
+      "base_value": "647.4",
+      "scaling_value": "86.1"
+    }
+  },
+  {
+    "name": "Cerberus",
+    "role": "SupportSolo",
+    "damage_type": "",
+    "image_url": "https://wiki.smite2.com/images/thumb/GodCard_Cerberus.png/250px-GodCard_Cerberus.png?ac80c",
+    "stats": {
+      "health": "2 (+0.25)",
+      "mana": "2 (+0)",
+      "physical_power": "0",
+      "magical_power": "0",
+      "physical_protection": "18",
+      "magical_protection": "30",
+      "attack_speed": "",
+      "movement_speed": "375 (+0)"
+    },
+    "counter_gods": [],
+    "counter_items": [],
+    "synergy_items": [],
+    "meta_role": "SupportSolo",
+    "scaling_info": {
+      "base_value": "672",
+      "scaling_value": "106"
+    }
+  },
+  {
+    "name": "Hades",
+    "role": "MidSolo",
+    "damage_type": "",
+    "image_url": "https://wiki.smite2.com/images/thumb/SkinArt_HadesS2_Default.jpg/250px-SkinArt_HadesS2_Default.jpg?d07a5",
+    "stats": {
+      "health": "1.7 (+0.2)",
+      "mana": "2.25 (+0.25)",
+      "physical_power": "0",
+      "magical_power": "0",
+      "physical_protection": "18",
+      "magical_protection": "30",
+      "attack_speed": "",
+      "movement_speed": "430 (+0)"
+    },
+    "counter_gods": [],
+    "counter_items": [],
+    "synergy_items": [],
+    "meta_role": "MidSolo",
+    "scaling_info": {
+      "intelligence": "5",
+      "strength": "5",
+      "base_value": "605",
+      "scaling_value": "80"
+    }
+  },
+  {
+    "name": "Hecate",
+    "role": "Mid",
+    "damage_type": "",
+    "image_url": "https://wiki.smite2.com/images/thumb/SkinArt_HecateS2_Default.jpg/250px-SkinArt_HecateS2_Default.jpg?a6d49",
+    "stats": {
+      "health": "1.7 (+0.2)",
+      "mana": "2.25 (+0.25)",
+      "physical_power": "0",
+      "magical_power": "0",
+      "physical_protection": "18",
+      "magical_protection": "30",
+      "attack_speed": "",
+      "movement_speed": "430 (+0)"
+    },
+    "counter_gods": [],
+    "counter_items": [],
+    "synergy_items": [],
+    "meta_role": "Mid",
+    "scaling_info": {
+      "intelligence": "8",
+      "strength": "5",
+      "base_value": "574.8",
+      "scaling_value": "76.4"
+    }
+  },
+  {
+    "name": "Medusa",
+    "role": "Carry",
+    "damage_type": "",
+    "image_url": "https://wiki.smite2.com/images/thumb/T_MedusaS2_Default.png/250px-T_MedusaS2_Default.png?ab222",
+    "stats": {
+      "health": "1.7 (+0.2)",
+      "mana": "2.25 (+0.25)",
+      "physical_power": "0",
+      "magical_power": "0",
+      "physical_protection": "18",
+      "magical_protection": "30",
+      "attack_speed": "",
+      "movement_speed": "430 (+0)"
+    },
+    "counter_gods": [],
+    "counter_items": [],
+    "synergy_items": [],
+    "meta_role": "Carry",
+    "scaling_info": {
+      "intelligence": "10",
+      "base_value": "586.9",
+      "scaling_value": "77.55"
+    }
+  },
+  {
+    "name": "Nemesis",
+    "role": "Jungle",
+    "damage_type": "",
+    "image_url": "https://wiki.smite2.com/images/thumb/T_NemesisS2_Default.png/250px-T_NemesisS2_Default.png?8e600",
+    "stats": {
+      "health": "1.7 (+0.2)",
+      "mana": "2.25 (+0.25)",
+      "physical_power": "0",
+      "magical_power": "0",
+      "physical_protection": "18",
+      "magical_protection": "30",
+      "attack_speed": "",
+      "movement_speed": "442 (+0)"
+    },
+    "counter_gods": [],
+    "counter_items": [],
+    "synergy_items": [],
+    "meta_role": "Jungle",
+    "scaling_info": {
+      "base_value": "623.2",
+      "scaling_value": "82.93"
+    }
+  },
+  {
+    "name": "Poseidon",
+    "role": "Mid",
+    "damage_type": "",
+    "image_url": "https://wiki.smite2.com/images/thumb/T_PoseidonS2_Default.png/250px-T_PoseidonS2_Default.png?2740d",
+    "stats": {
+      "health": "1.7 (+0.2)",
+      "mana": "2.34 (+0.26)",
+      "physical_power": "0",
+      "magical_power": "0",
+      "physical_protection": "18",
+      "magical_protection": "30",
+      "attack_speed": "",
+      "movement_speed": "365 (+0)"
+    },
+    "counter_gods": [],
+    "counter_items": [],
+    "synergy_items": [],
+    "meta_role": "Mid",
+    "scaling_info": {
+      "base_value": "591.8",
+      "scaling_value": "92.62"
+    }
+  },
+  {
+    "name": "Scylla",
+    "role": "File:S2 Role .png",
+    "damage_type": "",
+    "image_url": "https://wiki.smite2.com/images/thumb/GodCard_Scylla.png/250px-GodCard_Scylla.png?c2048",
+    "stats": {
+      "health": "(+)",
+      "mana": "(+0)",
+      "physical_power": "0",
+      "magical_power": "0",
+      "physical_protection": "18",
+      "magical_protection": "30",
+      "attack_speed": "",
+      "movement_speed": "(+0)"
+    },
+    "counter_gods": [],
+    "counter_items": [],
+    "synergy_items": [],
+    "meta_role": "File:S2 Role .png",
+    "scaling_info": {
+      "intelligence": "20"
+    }
+  },
+  {
+    "name": "Thanatos",
+    "role": "Jungle",
+    "damage_type": "",
+    "image_url": "https://wiki.smite2.com/images/thumb/SkinArt_ThanatosS2_Default.jpg/250px-SkinArt_ThanatosS2_Default.jpg?54970",
+    "stats": {
+      "health": "1.7 (+0.2)",
+      "mana": "(+)",
+      "physical_power": "0",
+      "magical_power": "0",
+      "physical_protection": "18",
+      "magical_protection": "30",
+      "attack_speed": "",
+      "movement_speed": "442 (+0)"
+    },
+    "counter_gods": [],
+    "counter_items": [],
+    "synergy_items": [],
+    "meta_role": "Jungle",
+    "scaling_info": {
+      "base_value": "605",
+      "scaling_value": "80"
+    }
+  },
+  {
+    "name": "Zeus",
+    "role": "Mid",
+    "damage_type": "",
+    "image_url": "https://wiki.smite2.com/images/thumb/SkinArt_ZeusS2_Default.jpg/250px-SkinArt_ZeusS2_Default.jpg?e7c60",
+    "stats": {
+      "health": "1.75 (+0.2)",
+      "mana": "2.25 (+0.25)",
+      "physical_power": "0",
+      "magical_power": "0",
+      "physical_protection": "18",
+      "magical_protection": "30",
+      "attack_speed": "",
+      "movement_speed": "430 (+0)"
+    },
+    "counter_gods": [],
+    "counter_items": [],
+    "synergy_items": [],
+    "meta_role": "Mid",
+    "scaling_info": {
+      "base_value": "586.9",
+      "scaling_value": "77.55"
+    }
+  },
+  {
+    "name": "Agni",
+    "role": "Mid",
+    "damage_type": "",
+    "image_url": "https://wiki.smite2.com/images/thumb/T_AgniS2_Default.png/250px-T_AgniS2_Default.png?41f68",
+    "stats": {
+      "health": "1.77 (+0.21)",
+      "mana": "2.5 (+0.25)",
+      "physical_power": "0",
+      "magical_power": "0",
+      "physical_protection": "18",
+      "magical_protection": "30",
+      "attack_speed": "",
+      "movement_speed": "375 (+0)"
+    },
+    "counter_gods": [],
+    "counter_items": [],
+    "synergy_items": [],
+    "meta_role": "Mid",
+    "scaling_info": {
+      "base_value": "672.3",
+      "scaling_value": "105.3"
+    }
+  },
+  {
+    "name": "Ganesha",
+    "role": "File:S2 Role .png",
+    "damage_type": "",
+    "image_url": "https://wiki.smite2.com/images/thumb/GodCard_Ganesha.png/250px-GodCard_Ganesha.png?57532",
+    "stats": {
+      "health": "(+)",
+      "mana": "(+0)",
+      "physical_power": "0",
+      "magical_power": "0",
+      "physical_protection": "18",
+      "magical_protection": "30",
+      "attack_speed": "",
+      "movement_speed": "(+0)"
+    },
+    "counter_gods": [],
+    "counter_items": [],
+    "synergy_items": [],
+    "meta_role": "File:S2 Role .png"
+  },
+  {
+    "name": "Kali",
+    "role": "File:S2 Role .png",
+    "damage_type": "",
+    "image_url": "https://wiki.smite2.com/images/thumb/GodCard_Kali.png/250px-GodCard_Kali.png?cc9cb",
+    "stats": {
+      "health": "(+)",
+      "mana": "(+0)",
+      "physical_power": "0",
+      "magical_power": "0",
+      "physical_protection": "18",
+      "magical_protection": "30",
+      "attack_speed": "",
+      "movement_speed": "(+0)"
+    },
+    "counter_gods": [],
+    "counter_items": [],
+    "synergy_items": [],
+    "meta_role": "File:S2 Role .png"
+  },
+  {
+    "name": "Rama",
+    "role": "Carry",
+    "damage_type": "",
+    "image_url": "https://wiki.smite2.com/images/thumb/T_RamaS2_Default.png/250px-T_RamaS2_Default.png?1cdbb",
+    "stats": {
+      "health": "1.7 (+0.2)",
+      "mana": "2.14 (+0.24)",
+      "physical_power": "0",
+      "magical_power": "0",
+      "physical_protection": "18",
+      "magical_protection": "30",
+      "attack_speed": "",
+      "movement_speed": "375 (+0)"
+    },
+    "counter_gods": [],
+    "counter_items": [],
+    "synergy_items": [],
+    "meta_role": "Carry",
+    "scaling_info": {
+      "base_value": "591.4",
+      "scaling_value": "92.6"
+    }
+  },
+  {
+    "name": "Amaterasu",
+    "role": "Solo",
+    "damage_type": "",
+    "image_url": "https://wiki.smite2.com/images/thumb/T_AmaterasuS2_Default.png/250px-T_AmaterasuS2_Default.png?41b0a",
+    "stats": {
+      "health": "1.7 (+0.2)",
+      "mana": "2.25 (+0.25)",
+      "physical_power": "0",
+      "magical_power": "0",
+      "physical_protection": "18",
+      "magical_protection": "30",
+      "attack_speed": "",
+      "movement_speed": "442 (+0)"
+    },
+    "counter_gods": [],
+    "counter_items": [],
+    "synergy_items": [],
+    "meta_role": "Solo",
+    "scaling_info": {
+      "intelligence": "18",
+      "strength": "14",
+      "base_value": "623.2",
+      "scaling_value": "82.93"
+    }
+  },
+  {
+    "name": "Danzaburou",
+    "role": "Carry",
+    "damage_type": "",
+    "image_url": "https://wiki.smite2.com/images/thumb/T_DanzaburouS2_Default.png/250px-T_DanzaburouS2_Default.png?34757",
+    "stats": {
+      "health": "1.7 (+0.2)",
+      "mana": "2.25 (+0.25)",
+      "physical_power": "0",
+      "magical_power": "0",
+      "physical_protection": "18",
+      "magical_protection": "30",
+      "attack_speed": "",
+      "movement_speed": "430 (+0)"
+    },
+    "counter_gods": [],
+    "counter_items": [],
+    "synergy_items": [],
+    "meta_role": "Carry",
+    "scaling_info": {
+      "base_value": "587",
+      "scaling_value": "77.55"
+    }
+  },
+  {
+    "name": "Izanami",
+    "role": "Carry",
+    "damage_type": "",
+    "image_url": "https://wiki.smite2.com/images/thumb/T_IzanamiS2_Default.png/250px-T_IzanamiS2_Default.png?a2dc8",
+    "stats": {
+      "health": "1.7 (+0.2)",
+      "mana": "2.14 (+0.24)",
+      "physical_power": "0",
+      "magical_power": "0",
+      "physical_protection": "18",
+      "magical_protection": "30",
+      "attack_speed": "",
+      "movement_speed": "365 (+0)"
+    },
+    "counter_gods": [],
+    "counter_items": [],
+    "synergy_items": [],
+    "meta_role": "Carry",
+    "scaling_info": {
+      "intelligence": "0.5",
+      "base_value": "591.38",
+      "scaling_value": "92.62"
+    }
+  },
+  {
+    "name": "Susano",
+    "role": "Jungle",
+    "damage_type": "",
+    "image_url": "https://wiki.smite2.com/images/thumb/SkinArt_SusanoS2_Default.jpg/250px-SkinArt_SusanoS2_Default.jpg?aaf0e",
+    "stats": {
+      "health": "(+)",
+      "mana": "(+)",
+      "physical_power": "0",
+      "magical_power": "0",
+      "physical_protection": "18",
+      "magical_protection": "30",
+      "attack_speed": "",
+      "movement_speed": "(+)"
+    },
+    "counter_gods": [],
+    "counter_items": [],
+    "synergy_items": [],
+    "meta_role": "Jungle",
+    "scaling_info": {
+      "strength": "120"
+    }
+  },
+  {
+    "name": "Princess Bari",
+    "role": "Carry",
+    "damage_type": "",
+    "image_url": "https://wiki.smite2.com/images/thumb/SkinArt_PrincessBariS2_Default.jpg/250px-SkinArt_PrincessBariS2_Default.jpg?abaca",
+    "stats": {
+      "health": "1.77 (+0.21)",
+      "mana": "2.5 (+0.25)",
+      "physical_power": "0",
+      "magical_power": "0",
+      "physical_protection": "18",
+      "magical_protection": "30",
+      "attack_speed": "",
+      "movement_speed": "375 (+0)"
+    },
+    "counter_gods": [],
+    "counter_items": [],
+    "synergy_items": [],
+    "meta_role": "Carry",
+    "scaling_info": {
+      "base_value": "672.3",
+      "scaling_value": "105.3"
+    }
+  },
+  {
+    "name": "Awilix",
+    "role": "Jungle",
+    "damage_type": "",
+    "image_url": "https://wiki.smite2.com/images/thumb/T_AwilixS2_Default.png/250px-T_AwilixS2_Default.png?faeb6",
+    "stats": {
+      "health": "1.7 (+0.2)",
+      "mana": "2.25 (+0.25)",
+      "physical_power": "0",
+      "magical_power": "0",
+      "physical_protection": "18",
+      "magical_protection": "30",
+      "attack_speed": "",
+      "movement_speed": "365 (+0)"
+    },
+    "counter_gods": [],
+    "counter_items": [],
+    "synergy_items": [],
+    "meta_role": "Jungle",
+    "scaling_info": {
+      "strength": "20",
+      "base_value": "591.4",
+      "scaling_value": "92.6"
+    }
+  },
+  {
+    "name": "Cabrakan",
+    "role": "SupportSolo",
+    "damage_type": "",
+    "image_url": "https://wiki.smite2.com/images/thumb/T_CabrakanS2_Default.png/250px-T_CabrakanS2_Default.png?863fe",
+    "stats": {
+      "health": "1.77 (+0.21)",
+      "mana": "2.5 (+0.25)",
+      "physical_power": "0",
+      "magical_power": "0",
+      "physical_protection": "18",
+      "magical_protection": "30",
+      "attack_speed": "",
+      "movement_speed": "375 (+0)"
+    },
+    "counter_gods": [],
+    "counter_items": [],
+    "synergy_items": [],
+    "meta_role": "SupportSolo",
+    "scaling_info": {
+      "base_value": "672.3",
+      "scaling_value": "105.3"
+    }
+  },
+  {
+    "name": "Chaac",
+    "role": "Solo",
+    "damage_type": "",
+    "image_url": "https://wiki.smite2.com/images/thumb/SkinArt_ChaacS2_Default.jpg/250px-SkinArt_ChaacS2_Default.jpg?a04a8",
+    "stats": {
+      "health": "1.7 (+0.2)",
+      "mana": "2.25 (+0.25)",
+      "physical_power": "0",
+      "magical_power": "0",
+      "physical_protection": "18",
+      "magical_protection": "30",
+      "attack_speed": "",
+      "movement_speed": "442 (+0)"
+    },
+    "counter_gods": [],
+    "counter_items": [],
+    "synergy_items": [],
+    "meta_role": "Solo",
+    "scaling_info": {
+      "base_value": "623.2",
+      "scaling_value": "82.93"
+    }
+  },
+  {
+    "name": "Hun Batz",
+    "role": "Jungle",
+    "damage_type": "",
+    "image_url": "https://wiki.smite2.com/images/thumb/T_HunBatzS2_Default.png/250px-T_HunBatzS2_Default.png?b556b",
+    "stats": {
+      "health": "1.7 (+0.2)",
+      "mana": "2.25 (+0.25)",
+      "physical_power": "0",
+      "magical_power": "0",
+      "physical_protection": "18",
+      "magical_protection": "30",
+      "attack_speed": "",
+      "movement_speed": "442 (+0)"
+    },
+    "counter_gods": [],
+    "counter_items": [],
+    "synergy_items": [],
+    "meta_role": "Jungle",
+    "scaling_info": {
+      "strength": "2",
+      "base_value": "605",
+      "scaling_value": "80"
+    }
+  },
+  {
+    "name": "Kukulkan",
+    "role": "Mid",
+    "damage_type": "",
+    "image_url": "https://wiki.smite2.com/images/thumb/SkinArt_KukulkanS2_Default.jpg/250px-SkinArt_KukulkanS2_Default.jpg?d8625",
+    "stats": {
+      "health": "1.65 (+0.2)",
+      "mana": "2.41 (+0.31)",
+      "physical_power": "0",
+      "magical_power": "0",
+      "physical_protection": "18",
+      "magical_protection": "30",
+      "attack_speed": "",
+      "movement_speed": "430 (+0)"
+    },
+    "counter_gods": [],
+    "counter_items": [],
+    "synergy_items": [],
+    "meta_role": "Mid",
+    "scaling_info": {
+      "base_value": "574.8",
+      "scaling_value": "76.4"
+    }
+  },
+  {
+    "name": "Fenrir",
+    "role": "Jungle",
+    "damage_type": "",
+    "image_url": "https://wiki.smite2.com/images/thumb/SkinArt_FenrirS2_Default.jpg/250px-SkinArt_FenrirS2_Default.jpg?d7150",
+    "stats": {
+      "health": "1.7 (+0.2)",
+      "mana": "2.25 (+0.25)",
+      "physical_power": "0",
+      "magical_power": "0",
+      "physical_protection": "18",
+      "magical_protection": "30",
+      "attack_speed": "",
+      "movement_speed": "442 (+0)"
+    },
+    "counter_gods": [],
+    "counter_items": [],
+    "synergy_items": [],
+    "meta_role": "Jungle",
+    "scaling_info": {
+      "strength": "15",
+      "base_value": "605",
+      "scaling_value": "80"
+    }
+  },
+  {
+    "name": "Loki",
+    "role": "Jungle",
+    "damage_type": "",
+    "image_url": "https://wiki.smite2.com/images/thumb/SkinArt_LokiS2_Default.jpg/250px-SkinArt_LokiS2_Default.jpg?26da7",
+    "stats": {
+      "health": "1.7 (+0.2)",
+      "mana": "2.25 (+0.25)",
+      "physical_power": "0",
+      "magical_power": "0",
+      "physical_protection": "18",
+      "magical_protection": "30",
+      "attack_speed": "",
+      "movement_speed": "442 (+0)"
+    },
+    "counter_gods": [],
+    "counter_items": [],
+    "synergy_items": [],
+    "meta_role": "Jungle",
+    "scaling_info": {
+      "base_value": "605",
+      "scaling_value": "80"
+    }
+  },
+  {
+    "name": "Odin",
+    "role": "Solo",
+    "damage_type": "",
+    "image_url": "https://wiki.smite2.com/images/thumb/SkinArt_OdinS2_Default.jpg/250px-SkinArt_OdinS2_Default.jpg?b6e9a",
+    "stats": {
+      "health": "1.75 (+0.2)",
+      "mana": "2.32 (+0.26)",
+      "physical_power": "0",
+      "magical_power": "0",
+      "physical_protection": "18",
+      "magical_protection": "30",
+      "attack_speed": "",
+      "movement_speed": "442 (+0)"
+    },
+    "counter_gods": [],
+    "counter_items": [],
+    "synergy_items": [],
+    "meta_role": "Solo",
+    "scaling_info": {
+      "intelligence": "10",
+      "strength": "10",
+      "base_value": "623.2",
+      "scaling_value": "83.4"
+    }
+  },
+  {
+    "name": "Sol",
+    "role": "MidCarry",
+    "damage_type": "",
+    "image_url": "https://wiki.smite2.com/images/thumb/SkinArt_SolS2_Default.jpg/250px-SkinArt_SolS2_Default.jpg?b774a",
+    "stats": {
+      "health": "1.7 (+0.2)",
+      "mana": "2.25 (+0.25)",
+      "physical_power": "0",
+      "magical_power": "0",
+      "physical_protection": "18",
+      "magical_protection": "30",
+      "attack_speed": "",
+      "movement_speed": "430 (+0)"
+    },
+    "counter_gods": [],
+    "counter_items": [],
+    "synergy_items": [],
+    "meta_role": "MidCarry",
+    "scaling_info": {
+      "intelligence": "0.25",
+      "strength": "0.25",
+      "base_value": "586.9",
+      "scaling_value": "77.55"
+    }
+  },
+  {
+    "name": "Thor",
+    "role": "Jungle",
+    "damage_type": "",
+    "image_url": "https://wiki.smite2.com/images/thumb/T_ThorS2_Default.png/250px-T_ThorS2_Default.png?1c125",
+    "stats": {
+      "health": "1.7 (+0.2)",
+      "mana": "2.25 (+0.25)",
+      "physical_power": "0",
+      "magical_power": "0",
+      "physical_protection": "18",
+      "magical_protection": "30",
+      "attack_speed": "",
+      "movement_speed": "442 (+0)"
+    },
+    "counter_gods": [],
+    "counter_items": [],
+    "synergy_items": [],
+    "meta_role": "Jungle",
+    "scaling_info": {
+      "strength": "10",
+      "base_value": "623.2",
+      "scaling_value": "82.93"
+    }
+  },
+  {
+    "name": "Ullr",
+    "role": "Carry",
+    "damage_type": "",
+    "image_url": "https://wiki.smite2.com/images/thumb/T_UllrS2_Default.png/250px-T_UllrS2_Default.png?44495",
+    "stats": {
+      "health": "1.77 (+0.21)",
+      "mana": "2.5 (+0.25)",
+      "physical_power": "0",
+      "magical_power": "0",
+      "physical_protection": "18",
+      "magical_protection": "30",
+      "attack_speed": "",
+      "movement_speed": "375 (+0)"
+    },
+    "counter_gods": [],
+    "counter_items": [],
+    "synergy_items": [],
+    "meta_role": "Carry",
+    "scaling_info": {
+      "strength": "10",
+      "base_value": "672.3",
+      "scaling_value": "105.3"
+    }
+  },
+  {
+    "name": "Ymir",
+    "role": "Support",
+    "damage_type": "",
+    "image_url": "https://wiki.smite2.com/images/thumb/SkinArt_YmirS2_Default.jpg/250px-SkinArt_YmirS2_Default.jpg?43d4e",
+    "stats": {
+      "health": "1.82 (+0.211)",
+      "mana": "2.25 (+0.25)",
+      "physical_power": "0",
+      "magical_power": "0",
+      "physical_protection": "18",
+      "magical_protection": "30",
+      "attack_speed": "",
+      "movement_speed": "442 (+0)"
+    },
+    "counter_gods": [],
+    "counter_items": [],
+    "synergy_items": [],
+    "meta_role": "Support",
+    "scaling_info": {
+      "base_value": "647.4",
+      "scaling_value": "85.84"
+    }
+  },
+  {
+    "name": "Pele",
+    "role": "Jungle",
+    "damage_type": "",
+    "image_url": "https://wiki.smite2.com/images/thumb/T_PeleS2_Default.png/250px-T_PeleS2_Default.png?fd402",
+    "stats": {
+      "health": "1.7 (+0.2)",
+      "mana": "2.25 (+0.25)",
+      "physical_power": "0",
+      "magical_power": "0",
+      "physical_protection": "18",
+      "magical_protection": "30",
+      "attack_speed": "",
+      "movement_speed": "375 (+0)"
+    },
+    "counter_gods": [],
+    "counter_items": [],
+    "synergy_items": [],
+    "meta_role": "Jungle",
+    "scaling_info": {
+      "strength": "10",
+      "base_value": "622.5",
+      "scaling_value": "97.5"
+    }
+  },
+  {
+    "name": "Bacchus",
+    "role": "Support",
+    "damage_type": "",
+    "image_url": "https://wiki.smite2.com/images/thumb/SkinArt_BacchusS2_Default.jpg/250px-SkinArt_BacchusS2_Default.jpg?3830c",
+    "stats": {
+      "health": "1.82 (+0.211)",
+      "mana": "2.25 (+0.25)",
+      "physical_power": "0",
+      "magical_power": "0",
+      "physical_protection": "18",
+      "magical_protection": "30",
+      "attack_speed": "",
+      "movement_speed": "442 (+0)"
+    },
+    "counter_gods": [],
+    "counter_items": [],
+    "synergy_items": [],
+    "meta_role": "Support",
+    "scaling_info": {
+      "intelligence": "0",
+      "strength": "0",
+      "base_value": "647.4",
+      "scaling_value": "86.1"
+    }
+  },
+  {
+    "name": "Bellona",
+    "role": "Solo",
+    "damage_type": "",
+    "image_url": "https://wiki.smite2.com/images/thumb/SkinArt_BellonaS2_Default.jpg/250px-SkinArt_BellonaS2_Default.jpg?fd3ba",
+    "stats": {
+      "health": "1.7 (+0.2)",
+      "mana": "2.18 (+0.24)",
+      "physical_power": "0",
+      "magical_power": "0",
+      "physical_protection": "18",
+      "magical_protection": "30",
+      "attack_speed": "",
+      "movement_speed": "442 (+0)"
+    },
+    "counter_gods": [],
+    "counter_items": [],
+    "synergy_items": [],
+    "meta_role": "Solo",
+    "scaling_info": {
+      "intelligence": "30",
+      "strength": "3",
+      "base_value": "623.2",
+      "scaling_value": "83.4"
+    }
+  },
+  {
+    "name": "Cupid",
+    "role": "Carry",
+    "damage_type": "",
+    "image_url": "https://wiki.smite2.com/images/thumb/T_CupidS2_Default.png/250px-T_CupidS2_Default.png?ea98c",
+    "stats": {
+      "health": "1.7 (+0.2)",
+      "mana": "2.14 (+0.24)",
+      "physical_power": "0",
+      "magical_power": "0",
+      "physical_protection": "18",
+      "magical_protection": "30",
+      "attack_speed": "",
+      "movement_speed": "375 (+0)"
+    },
+    "counter_gods": [],
+    "counter_items": [],
+    "synergy_items": [],
+    "meta_role": "Carry",
+    "scaling_info": {
+      "intelligence": "5",
+      "strength": "25",
+      "base_value": "591.4",
+      "scaling_value": "92.6"
+    }
+  },
+  {
+    "name": "Hercules",
+    "role": "Solo",
+    "damage_type": "",
+    "image_url": "https://wiki.smite2.com/images/thumb/T_HerculesS2_Default.png/250px-T_HerculesS2_Default.png?a796b",
+    "stats": {
+      "health": "1.7 (+0.2)",
+      "mana": "2.25 (+0.25)",
+      "physical_power": "0",
+      "magical_power": "0",
+      "physical_protection": "18",
+      "magical_protection": "30",
+      "attack_speed": "",
+      "movement_speed": "442 (+0)"
+    },
+    "counter_gods": [],
+    "counter_items": [],
+    "synergy_items": [],
+    "meta_role": "Solo",
+    "scaling_info": {
+      "strength": "4",
+      "base_value": "623.2",
+      "scaling_value": "82.93"
+    }
+  },
+  {
+    "name": "Mercury",
+    "role": "File:S2 Role .png",
+    "damage_type": "",
+    "image_url": "https://wiki.smite2.com/images/thumb/NewUI_Pantheon2_Roman.png/25px-NewUI_Pantheon2_Roman.png?b347b",
+    "stats": {
+      "health": "(+)",
+      "mana": "(+0)",
+      "physical_power": "0",
+      "magical_power": "0",
+      "physical_protection": "18",
+      "magical_protection": "30",
+      "attack_speed": "",
+      "movement_speed": "(+0)"
+    },
+    "counter_gods": [],
+    "counter_items": [],
+    "synergy_items": [],
+    "meta_role": "File:S2 Role .png"
+  },
+  {
+    "name": "Vulcan",
+    "role": "Mid",
+    "damage_type": "",
+    "image_url": "https://wiki.smite2.com/images/thumb/T_VulcanS2_Default.png/250px-T_VulcanS2_Default.png?dcf0a",
+    "stats": {
+      "health": "1.7 (+0.2)",
+      "mana": "2.34 (+0.26)",
+      "physical_power": "0",
+      "magical_power": "0",
+      "physical_protection": "18",
+      "magical_protection": "30",
+      "attack_speed": "",
+      "movement_speed": "365 (+0)"
+    },
+    "counter_gods": [],
+    "counter_items": [],
+    "synergy_items": [],
+    "meta_role": "Mid",
+    "scaling_info": {
+      "base_value": "591.8",
+      "scaling_value": "92.62"
+    }
+  },
+  {
+    "name": "Aladdin",
+    "role": "Jungle",
+    "damage_type": "",
+    "image_url": "https://wiki.smite2.com/images/thumb/T_AladdinS2_Default.png/250px-T_AladdinS2_Default.png?21b96",
+    "stats": {
+      "health": "1.7 (+0.2)",
+      "mana": "2.25 (+2.5)",
+      "physical_power": "0",
+      "magical_power": "0",
+      "physical_protection": "18",
+      "magical_protection": "30",
+      "attack_speed": "",
+      "movement_speed": "365 (+1.46)"
+    },
+    "counter_gods": [],
+    "counter_items": [],
+    "synergy_items": [],
+    "meta_role": "Jungle",
+    "scaling_info": {
+      "base_value": "591.38",
+      "scaling_value": "92.68"
+    }
+  },
+  {
+    "name": "Baron Samedi",
+    "role": "MidSupport",
+    "damage_type": "",
+    "image_url": "https://wiki.smite2.com/images/thumb/T_BaronSamediS2_Default.png/250px-T_BaronSamediS2_Default.png?63d06",
+    "stats": {
+      "health": "1.7 (+0.2)",
+      "mana": "2.34 (+0.26)",
+      "physical_power": "0",
+      "magical_power": "0",
+      "physical_protection": "18",
+      "magical_protection": "30",
+      "attack_speed": "",
+      "movement_speed": "365 (+0)"
+    },
+    "counter_gods": [],
+    "counter_items": [],
+    "synergy_items": [],
+    "meta_role": "MidSupport",
+    "scaling_info": {
+      "base_value": "591.8",
+      "scaling_value": "92.62"
+    }
+  },
+  {
+    "name": "Yemoja",
+    "role": "Support",
+    "damage_type": "",
+    "image_url": "https://wiki.smite2.com/images/thumb/T_YemojaS2_Default.png/250px-T_YemojaS2_Default.png?3f13b",
+    "stats": {
+      "health": "1.77 (+0.21)",
+      "mana": "2.5 (+0.25)",
+      "physical_power": "0",
+      "magical_power": "0",
+      "physical_protection": "18",
+      "magical_protection": "30",
+      "attack_speed": "",
+      "movement_speed": "375 (+0)"
+    },
+    "counter_gods": [],
+    "counter_items": [],
+    "synergy_items": [],
+    "meta_role": "Support",
+    "scaling_info": {
+      "base_value": "672.3",
+      "scaling_value": "105.3"
+    }
+  }
+]

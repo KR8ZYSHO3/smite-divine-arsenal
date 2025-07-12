@@ -1,0 +1,1619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smite 2 Divine Arsenal - Build Optimizer & Database</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-bg: #0a0e1a;
+            --secondary-bg: #1a1f2e;
+            --card-bg: #232937;
+            --accent-gold: #d4af37;
+            --accent-blue: #4a9eff;
+            --accent-red: #ff4757;
+            --accent-green: #2ed573;
+            --text-primary: #ffffff;
+            --text-secondary: #b8c5d6;
+            --text-muted: #7d8da3;
+            --border-color: #3a4152;
+            --gradient-primary: linear-gradient(135deg, #0a0e1a 0%, #1a1f2e 100%);
+            --gradient-card: linear-gradient(135deg, #232937 0%, #2a3142 100%);
+            --gradient-accent: linear-gradient(135deg, #d4af37 0%, #f1c40f 100%);
+            --shadow-primary: 0 8px 32px rgba(0, 0, 0, 0.3);
+            --shadow-card: 0 4px 16px rgba(0, 0, 0, 0.2);
+            --shadow-glow: 0 0 20px rgba(212, 175, 55, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Exo 2', sans-serif;
+            background: var(--gradient-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(74, 158, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(255, 71, 87, 0.1) 0%, transparent 50%);
+            z-index: -1;
+            animation: backgroundShift 20s ease-in-out infinite alternate;
+        }
+
+        @keyframes backgroundShift {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(-10px, -10px) scale(1.05); }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header Styling */
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .header h1 {
+            font-family: 'Orbitron', monospace;
+            font-size: 3.5rem;
+            font-weight: 900;
+            background: var(--gradient-accent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+            text-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
+            animation: titleGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes titleGlow {
+            0% { filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.3)); }
+            100% { filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.6)); }
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            font-weight: 300;
+        }
+
+        /* Navigation */
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            background: var(--gradient-card);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            padding: 12px 24px;
+            color: var(--text-primary);
+            font-family: 'Exo 2', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            font-size: 0.95rem;
+        }
+
+        .nav-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-accent);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .nav-btn:hover {
+            color: var(--primary-bg);
+            border-color: var(--accent-gold);
+            box-shadow: var(--shadow-glow);
+            transform: translateY(-2px);
+        }
+
+        .nav-btn:hover::before {
+            left: 0;
+        }
+
+        /* Statistics Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .stat-card {
+            background: var(--gradient-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient-accent);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-primary);
+            border-color: var(--accent-gold);
+        }
+
+        .stat-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .stat-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+            margin-bottom: 8px;
+            font-family: 'Orbitron', monospace;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            font-weight: 300;
+        }
+
+        /* Content Sections */
+        .content-section {
+            background: var(--gradient-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow-card);
+        }
+
+        .section-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Build Optimizer */
+        .build-optimizer {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        .form-input, .form-select {
+            width: 100%;
+            padding: 12px 16px;
+            background: var(--secondary-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-family: 'Exo 2', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus, .form-select:focus {
+            outline: none;
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+        }
+
+        .optimize-btn {
+            background: var(--gradient-accent);
+            border: none;
+            border-radius: 12px;
+            padding: 15px 30px;
+            color: var(--primary-bg);
+            font-family: 'Exo 2', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-card);
+        }
+
+        .optimize-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .optimize-btn.advanced {
+            background: linear-gradient(135deg, #9b59b6, #e74c3c);
+            font-weight: 700;
+        }
+
+        .optimize-btn.advanced:hover {
+            background: linear-gradient(135deg, #8e44ad, #c0392b);
+        }
+
+        /* Advanced Tabs */
+        .advanced-tabs {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: none;
+            padding: 12px 20px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            border-radius: 8px 8px 0 0;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            position: relative;
+        }
+
+        .tab-btn:hover {
+            color: var(--accent-gold);
+            background: var(--secondary-bg);
+        }
+
+        .tab-btn.active {
+            color: var(--accent-gold);
+            background: var(--secondary-bg);
+            border-bottom: 3px solid var(--accent-gold);
+        }
+
+        .advanced-tab-content {
+            display: none;
+            padding: 20px;
+            background: var(--secondary-bg);
+            border-radius: 0 12px 12px 12px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 20px;
+        }
+
+        .advanced-tab-content.active {
+            display: block;
+        }
+
+        /* Meta Tiers */
+        .meta-tier {
+            margin-bottom: 20px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .tier-header {
+            padding: 12px 20px;
+            font-weight: 700;
+            color: white;
+            background: var(--gradient-accent);
+        }
+
+        .tier-header.s-tier { background: linear-gradient(135deg, #f1c40f, #f39c12); }
+        .tier-header.a-tier { background: linear-gradient(135deg, #2ecc71, #27ae60); }
+        .tier-header.b-tier { background: linear-gradient(135deg, #3498db, #2980b9); }
+        .tier-header.c-tier { background: linear-gradient(135deg, #95a5a6, #7f8c8d); }
+
+        .tier-items {
+            padding: 15px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 10px;
+        }
+
+        .tier-item {
+            background: var(--card-bg);
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .tier-item:hover {
+            border-color: var(--accent-gold);
+            transform: scale(1.02);
+        }
+
+        /* Synergy Cards */
+        .synergy-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .synergy-card:hover {
+            border-color: var(--accent-gold);
+            box-shadow: var(--shadow-card);
+        }
+
+        .synergy-items {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+
+        .synergy-score {
+            background: var(--gradient-accent);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        /* Playstyle Selection */
+        .playstyle-section {
+            background: var(--secondary-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+
+        .playstyle-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .playstyle-category {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .playstyle-checkbox {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 8px;
+            border-radius: 6px;
+        }
+
+        .playstyle-checkbox:hover {
+            background: var(--secondary-bg);
+        }
+
+        .playstyle-checkbox input[type="checkbox"] {
+            display: none;
+        }
+
+        .checkmark {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--border-color);
+            border-radius: 4px;
+            margin-right: 12px;
+            position: relative;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .playstyle-checkbox input[type="checkbox"]:checked + .checkmark {
+            background: var(--gradient-accent);
+            border-color: var(--accent-gold);
+        }
+
+        .playstyle-checkbox input[type="checkbox"]:checked + .checkmark::after {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .label-text {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        .playstyle-checkbox:hover .label-text {
+            color: var(--text-primary);
+        }
+
+        .playstyle-checkbox input[type="checkbox"]:checked ~ .label-text {
+            color: var(--accent-gold);
+            font-weight: 600;
+        }
+
+        /* Build Results */
+        .build-result {
+            background: var(--secondary-bg);
+            border: 2px solid var(--accent-green);
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 20px;
+        }
+
+        .build-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .build-item {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 12px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .build-item:hover {
+            border-color: var(--accent-gold);
+            transform: scale(1.05);
+        }
+
+        .build-item img {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 8px;
+            border-radius: 4px;
+        }
+
+        /* Data Cards */
+        .data-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            max-height: 600px;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+
+        .data-card {
+            background: var(--secondary-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .data-card:hover {
+            border-color: var(--accent-blue);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-card);
+        }
+
+        .data-card img {
+            border-radius: 8px;
+            margin-right: 12px;
+            border: 2px solid var(--border-color);
+        }
+
+        .data-card h4 {
+            color: var(--accent-gold);
+            margin-bottom: 12px;
+            font-family: 'Orbitron', monospace;
+        }
+
+        .data-card p {
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+
+        .data-card strong {
+            color: var(--text-primary);
+        }
+
+        /* Role Grid */
+        .role-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .role-card {
+            background: var(--secondary-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .role-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-primary);
+        }
+
+        .role-card.solo { border-color: var(--accent-blue); }
+        .role-card.mid { border-color: #9b59b6; }
+        .role-card.carry { border-color: var(--accent-red); }
+        .role-card.support { border-color: var(--accent-green); }
+        .role-card.jungle { border-color: #f39c12; }
+
+        .role-icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .role-count {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+            margin-bottom: 5px;
+            font-family: 'Orbitron', monospace;
+        }
+
+        .role-name {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .role-desc {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* Search Bar */
+        .search-container {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 15px 50px 15px 20px;
+            background: var(--secondary-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 25px;
+            color: var(--text-primary);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+        }
+
+        .search-btn {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            background: var(--gradient-accent);
+            border: none;
+            border-radius: 20px;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .search-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+        }
+
+        .loading::before {
+            content: '';
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--border-color);
+            border-top: 2px solid var(--accent-gold);
+            border-radius: 50%;
+            margin-right: 15px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .header h1 {
+                font-size: 2.5rem;
+            }
+
+            .build-optimizer {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 15px;
+            }
+        }
+
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--secondary-bg);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent-gold);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #f1c40f;
+        }
+
+        /* Hide sections initially */
+        .content-section {
+            display: none;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>🏛️ DIVINE ARSENAL</h1>
+            <p>Ultimate Smite 2 Build Optimizer & Game Database</p>
+        </div>
+
+        <!-- Navigation -->
+        <div class="nav-container">
+            <button class="nav-btn" onclick="showSection('dashboard')">📊 Dashboard</button>
+            <button class="nav-btn" onclick="showSection('builds')">🛠️ Build Optimizer</button>
+            <button class="nav-btn" onclick="showSection('gods')">🦸 Gods Database</button>
+            <button class="nav-btn" onclick="showSection('items')">⚔️ Items Database</button>
+            <button class="nav-btn" onclick="showSection('patches')">📰 Patch Notes</button>
+            <button class="nav-btn" onclick="refreshData()">🔄 Refresh Data</button>
+            <button class="nav-btn" onclick="syncWiki()">🌐 Sync Wiki</button>
+        </div>
+
+        <!-- Dashboard Section -->
+        <div id="dashboard-section" class="content-section active">
+            <!-- Statistics Grid -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-icon">🦸</span>
+                    <div class="stat-number" id="gods-count">-</div>
+                    <div class="stat-label">Available Gods</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-icon">⚔️</span>
+                    <div class="stat-number" id="items-count">-</div>
+                    <div class="stat-label">Items in Arsenal</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-icon">📰</span>
+                    <div class="stat-number" id="patches-count">-</div>
+                    <div class="stat-label">Patch Notes</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-icon">🏆</span>
+                    <div class="stat-number" id="builds-count">∞</div>
+                    <div class="stat-label">Possible Builds</div>
+                </div>
+            </div>
+
+            <!-- Role Distribution -->
+            <div class="content-section active">
+                <h2 class="section-title">🎮 God Pool by Position</h2>
+                <p style="margin-bottom: 20px; color: var(--text-secondary);">Distribution of gods across Smite 2 conquest positions</p>
+                <div class="role-grid" id="roles-grid">
+                    <!-- Roles will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Build Optimizer Section -->
+        <div id="builds-section" class="content-section">
+            <h2 class="section-title">🛠️ Build Optimizer</h2>
+            <div class="build-optimizer">
+                <div>
+                    <div class="form-group">
+                        <label class="form-label">Select God:</label>
+                        <select id="god-select" class="form-select">
+                            <option value="">Choose a god...</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Role/Position:</label>
+                        <select id="role-select" class="form-select">
+                            <option value="Mid">Mid Lane</option>
+                            <option value="Solo">Solo Lane</option>
+                            <option value="Carry">Carry (ADC)</option>
+                            <option value="Support">Support</option>
+                            <option value="Jungle">Jungle</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Game Phase:</label>
+                        <select id="phase-select" class="form-select">
+                            <option value="All">All Game</option>
+                            <option value="Early">Early Game</option>
+                            <option value="Mid">Mid Game</option>
+                            <option value="Late">Late Game</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <div class="form-group">
+                        <label class="form-label">Enemy Composition (optional):</label>
+                        <input type="text" id="enemy-comp" class="form-input" placeholder="e.g., Zeus, Thor, Hercules">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Budget (Gold):</label>
+                        <input type="number" id="budget-input" class="form-input" value="15000" min="5000" max="20000" step="500">
+                    </div>
+                    <div class="form-group">
+                        <button class="optimize-btn" onclick="optimizeBuild()">⚡ Basic Build</button>
+                        <button class="optimize-btn advanced" onclick="optimizeAdvancedBuild()">🚀 Advanced Build</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 🎯 Playstyle Selection -->
+            <div class="playstyle-section">
+                <h3 style="color: var(--accent-gold); margin-bottom: 15px; font-family: 'Orbitron', monospace;">🎯 Build Focus & Playstyle</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 20px;">Select your preferred playstyle(s) to customize the build optimization:</p>
+                
+                <div class="playstyle-grid">
+                    <!-- Damage Focus -->
+                    <div class="playstyle-category">
+                        <h4 style="color: var(--accent-red); margin-bottom: 10px;">⚔️ Damage Focus</h4>
+                        <label class="playstyle-checkbox">
+                            <input type="checkbox" id="max-damage" value="max_damage">
+                            <span class="checkmark"></span>
+                            <span class="label-text">🔥 Max Damage - Pure damage output</span>
+                        </label>
+                        <label class="playstyle-checkbox">
+                            <input type="checkbox" id="critical-strike" value="critical_strike">
+                            <span class="checkmark"></span>
+                            <span class="label-text">💥 Critical Strike - Crit-focused builds</span>
+                        </label>
+                        <label class="playstyle-checkbox">
+                            <input type="checkbox" id="penetration" value="penetration">
+                            <span class="checkmark"></span>
+                            <span class="label-text">🎯 Penetration - Anti-tank builds</span>
+                        </label>
+                        <label class="playstyle-checkbox">
+                            <input type="checkbox" id="attack-speed" value="attack_speed">
+                            <span class="checkmark"></span>
+                            <span class="label-text">⚡ Attack Speed - Auto-attack focused</span>
+                        </label>
+                    </div>
+                    
+                    <!-- Defense Focus -->
+                    <div class="playstyle-category">
+                        <h4 style="color: var(--accent-blue); margin-bottom: 10px;">🛡️ Defense Focus</h4>
+                        <label class="playstyle-checkbox">
+                            <input type="checkbox" id="max-hp" value="max_hp">
+                            <span class="checkmark"></span>
+                            <span class="label-text">❤️ Max HP - Health stacking</span>
+                        </label>
+                        <label class="playstyle-checkbox">
+                            <input type="checkbox" id="max-defense" value="max_defense">
+                            <span class="checkmark"></span>
+                            <span class="label-text">🛡️ Max Defense - Protection focused</span>
+                        </label>
+                        <label class="playstyle-checkbox">
+                            <input type="checkbox" id="anti-burst" value="anti_burst">
+                            <span class="checkmark"></span>
+                            <span class="label-text">💎 Anti-Burst - Counter high damage</span>
+                        </label>
+                        <label class="playstyle-checkbox">
+                            <input type="checkbox" id="sustain" value="sustain">
+                            <span class="checkmark"></span>
+                            <span class="label-text">💚 Sustain - Lifesteal & healing</span>
+                        </label>
+                    </div>
+                    
+                    <!-- Utility Focus -->
+                    <div class="playstyle-category">
+                        <h4 style="color: var(--accent-green); margin-bottom: 10px;">🔧 Utility Focus</h4>
+                        <label class="playstyle-checkbox">
+                            <input type="checkbox" id="cooldown-reduction" value="cooldown_reduction">
+                            <span class="checkmark"></span>
+                            <span class="label-text">🔄 CDR - Ability spam builds</span>
+                        </label>
+                        <label class="playstyle-checkbox">
+                            <input type="checkbox" id="mobility" value="mobility">
+                            <span class="checkmark"></span>
+                            <span class="label-text">🏃 Mobility - Movement & positioning</span>
+                        </label>
+                        <label class="playstyle-checkbox">
+                            <input type="checkbox" id="utility-support" value="utility_support">
+                            <span class="checkmark"></span>
+                            <span class="label-text">🤝 Team Support - Aura items</span>
+                        </label>
+                        <label class="playstyle-checkbox">
+                            <input type="checkbox" id="anti-heal" value="anti_heal">
+                            <span class="checkmark"></span>
+                            <span class="label-text">🚫 Anti-Heal - Counter enemy healing</span>
+                        </label>
+                    </div>
+                    
+                    <!-- Game Phase Focus -->
+                    <div class="playstyle-category">
+                        <h4 style="color: var(--accent-gold); margin-bottom: 10px;">⏰ Timing Focus</h4>
+                        <label class="playstyle-checkbox">
+                            <input type="checkbox" id="early-game" value="early_game">
+                            <span class="checkmark"></span>
+                            <span class="label-text">🌅 Early Game - Cheap power spikes</span>
+                        </label>
+                        <label class="playstyle-checkbox">
+                            <input type="checkbox" id="late-scaling" value="late_scaling">
+                            <span class="checkmark"></span>
+                            <span class="label-text">🌙 Late Scaling - Expensive high-impact</span>
+                        </label>
+                        <label class="playstyle-checkbox">
+                            <input type="checkbox" id="power-spike" value="power_spike">
+                            <span class="checkmark"></span>
+                            <span class="label-text">📈 Power Spike - Mid-game dominance</span>
+                        </label>
+                        <label class="playstyle-checkbox">
+                            <input type="checkbox" id="cost-efficient" value="cost_efficient">
+                            <span class="checkmark"></span>
+                            <span class="label-text">💰 Cost Efficient - Value builds</span>
+                        </label>
+                </div>
+            </div>
+            
+            <!-- Advanced Features Tabs -->
+            <div class="advanced-tabs">
+                <button class="tab-btn active" onclick="showAdvancedTab('build')">🏗️ Build Result</button>
+                <button class="tab-btn" onclick="showAdvancedTab('meta')">📊 Meta Tiers</button>
+                <button class="tab-btn" onclick="showAdvancedTab('synergies')">🔗 Item Synergies</button>
+                <button class="tab-btn" onclick="showAdvancedTab('counter')">⚔️ Counter Analysis</button>
+            </div>
+            
+            <div id="build-result" class="advanced-tab-content active"></div>
+            <div id="meta-result" class="advanced-tab-content"></div>
+            <div id="synergies-result" class="advanced-tab-content"></div>
+            <div id="counter-result" class="advanced-tab-content"></div>
+        </div>
+
+        <!-- Gods Section -->
+        <div id="gods-section" class="content-section">
+            <h2 class="section-title">🦸 Gods Database</h2>
+            <div class="search-container">
+                <input type="text" id="gods-search" class="search-input" placeholder="Search gods...">
+                <button class="search-btn" onclick="filterGods()">🔍</button>
+            </div>
+            <div class="data-grid" id="gods-grid">
+                <div class="loading">Loading gods...</div>
+            </div>
+        </div>
+
+        <!-- Items Section -->
+        <div id="items-section" class="content-section">
+            <h2 class="section-title">⚔️ Items Database</h2>
+            <div class="search-container">
+                <input type="text" id="items-search" class="search-input" placeholder="Search items...">
+                <button class="search-btn" onclick="filterItems()">🔍</button>
+            </div>
+            <div class="data-grid" id="items-grid">
+                <div class="loading">Loading items...</div>
+            </div>
+        </div>
+
+        <!-- Patch Notes Section -->
+        <div id="patches-section" class="content-section">
+            <h2 class="section-title">📰 Patch Notes</h2>
+            <div id="patches-grid">
+                <div class="loading">Loading patch notes...</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentData = null;
+
+        // Show specific section
+        function showSection(sectionName) {
+            // Hide all sections
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionName + '-section').classList.add('active');
+            
+            // Load data if needed
+            if (sectionName === 'gods' && !document.querySelector('#gods-grid .data-card')) {
+                displayGods();
+            } else if (sectionName === 'items' && !document.querySelector('#items-grid .data-card')) {
+                displayItems();
+            } else if (sectionName === 'patches' && !document.querySelector('#patches-grid .patch-card')) {
+                displayPatches();
+            }
+        }
+
+        // Load dashboard data
+        async function loadDashboard() {
+            try {
+                const response = await fetch('/api/dashboard');
+                const data = await response.json();
+                currentData = data;
+                
+                // Update statistics
+                document.getElementById('gods-count').textContent = data.gods?.length || 0;
+                document.getElementById('items-count').textContent = data.items?.length || 0;
+                document.getElementById('patches-count').textContent = data.patches?.length || 0;
+                
+                // Display role distribution
+                displayRoles(data.gods);
+                
+                // Populate god select
+                populateGodSelect(data.gods);
+                
+            } catch (error) {
+                console.error('Error loading dashboard:', error);
+            }
+        }
+
+        // Display role distribution
+        function displayRoles(gods) {
+            const roleCounts = {};
+            const roleDescriptions = {
+                'Solo': { icon: '🛡️', desc: 'Top lane tanks', color: 'solo' },
+                'Mid': { icon: '🔮', desc: 'Middle lane mages', color: 'mid' },
+                'Carry': { icon: '🏹', desc: 'Bottom lane hunters', color: 'carry' },
+                'Support': { icon: '🛡️', desc: 'Team protectors', color: 'support' },
+                'Jungle': { icon: '🗡️', desc: 'High mobility assassins', color: 'jungle' }
+            };
+            
+            gods.forEach(god => {
+                const role = god.role;
+                if (role && roleDescriptions[role]) {
+                    roleCounts[role] = (roleCounts[role] || 0) + 1;
+                }
+            });
+            
+            const rolesHtml = Object.entries(roleDescriptions).map(([role, info]) => `
+                <div class="role-card ${info.color}">
+                    <div class="role-icon">${info.icon}</div>
+                    <div class="role-count">${roleCounts[role] || 0}</div>
+                    <div class="role-name">${role}</div>
+                    <div class="role-desc">${info.desc}</div>
+                </div>
+            `).join('');
+            
+            document.getElementById('roles-grid').innerHTML = rolesHtml;
+        }
+
+        // Populate god select dropdown
+        function populateGodSelect(gods) {
+            const select = document.getElementById('god-select');
+            select.innerHTML = '<option value="">Choose a god...</option>';
+            
+            gods.forEach(god => {
+                const option = document.createElement('option');
+                option.value = god.name;
+                option.textContent = god.name;
+                select.appendChild(option);
+            });
+        }
+
+        // Display gods
+        async function displayGods() {
+            try {
+                const response = await fetch('/api/gods');
+                const data = await response.json();
+                
+                const godsHtml = data.gods.map(god => `
+                    <div class="data-card">
+                        ${god.image_url ? `<img src="${god.image_url}" alt="${god.name}" style="width: 64px; height: 64px; object-fit: cover; float: left; border-radius: 8px; margin-right: 15px;">` : ''}
+                        <h4>${god.name}</h4>
+                        <p><strong>Role:</strong> ${god.role || 'Unknown'}</p>
+                        <p><strong>Damage Type:</strong> ${god.damage_type || 'Unknown'}</p>
+                        <p><strong>Pantheon:</strong> ${god.pantheon || 'Unknown'}</p>
+                        <p><strong>Abilities:</strong> ${god.abilities?.length || 0}</p>
+                        ${god.playstyle?.length ? `<p><strong>Playstyle:</strong> ${god.playstyle.join(', ')}</p>` : ''}
+                    </div>
+                `).join('');
+                
+                document.getElementById('gods-grid').innerHTML = godsHtml;
+            } catch (error) {
+                console.error('Error loading gods:', error);
+                document.getElementById('gods-grid').innerHTML = '<p style="color: var(--accent-red);">Error loading gods data.</p>';
+            }
+        }
+
+        // Display items
+        async function displayItems() {
+            try {
+                const response = await fetch('/api/items');
+                const data = await response.json();
+                
+                const itemsHtml = data.items.map(item => `
+                    <div class="data-card">
+                        ${item.image_url ? `<img src="${item.image_url}" alt="${item.name}" style="width: 48px; height: 48px; object-fit: cover; float: left; border-radius: 6px; margin-right: 12px;">` : ''}
+                        <h4>${item.name}</h4>
+                        <p><strong>Type:</strong> ${item.type || 'Unknown'}</p>
+                        <p><strong>Tier:</strong> ${item.tier || 'Unknown'}</p>
+                        <p><strong>Cost:</strong> ${item.cost || 0} gold</p>
+                        <p><strong>Category:</strong> ${item.category || 'Unknown'}</p>
+                        ${item.passive ? `<p><strong>Passive:</strong> ${item.passive.substring(0, 100)}...</p>` : ''}
+                        ${Object.keys(item.stats || {}).length > 0 ? `<p><strong>Stats:</strong> ${Object.entries(item.stats).map(([k,v]) => `${k}: ${v}`).join(', ')}</p>` : ''}
+                    </div>
+                `).join('');
+                
+                document.getElementById('items-grid').innerHTML = itemsHtml;
+            } catch (error) {
+                console.error('Error loading items:', error);
+                document.getElementById('items-grid').innerHTML = '<p style="color: var(--accent-red);">Error loading items data.</p>';
+            }
+        }
+
+        // Display patch notes
+        async function displayPatches() {
+            try {
+                const response = await fetch('/api/patches');
+                const data = await response.json();
+                
+                if (data.patches && data.patches.length > 0) {
+                    const patchesHtml = data.patches.map(patch => `
+                        <div class="content-section" style="display: block; margin-bottom: 20px;">
+                            <h3 class="section-title">📋 ${patch.title || `Patch ${patch.version}`}</h3>
+                            <p style="color: var(--text-secondary); margin-bottom: 15px;"><strong>Date:</strong> ${patch.date || 'Unknown'}</p>
+                            ${patch.enhanced_summary ? `<div style="background: var(--secondary-bg); padding: 15px; border-radius: 8px; margin-bottom: 15px; border-left: 4px solid var(--accent-gold);"><strong>Summary:</strong> ${patch.enhanced_summary}</div>` : ''}
+                            <div style="background: var(--secondary-bg); padding: 20px; border-radius: 8px; max-height: 400px; overflow-y: auto;">
+                                <pre style="white-space: pre-wrap; font-family: 'Exo 2', sans-serif; color: var(--text-secondary);">${patch.content || 'No content available'}</pre>
+                            </div>
+                        </div>
+                    `).join('');
+                    
+                    document.getElementById('patches-grid').innerHTML = patchesHtml;
+                } else {
+                    document.getElementById('patches-grid').innerHTML = '<p style="color: var(--text-muted);">No patch notes available yet.</p>';
+                }
+            } catch (error) {
+                console.error('Error loading patches:', error);
+                document.getElementById('patches-grid').innerHTML = '<p style="color: var(--accent-red);">Error loading patch notes.</p>';
+            }
+        }
+
+        // Build optimization
+        async function optimizeBuild() {
+            const godName = document.getElementById('god-select').value;
+            const role = document.getElementById('role-select').value;
+            const enemyComp = document.getElementById('enemy-comp').value;
+            
+            if (!godName) {
+                alert('Please select a god first!');
+                return;
+            }
+            
+            document.getElementById('build-result').innerHTML = '<div class="loading">Optimizing build...</div>';
+            
+            try {
+                const params = new URLSearchParams({
+                    god: godName,
+                    role: role,
+                    ...(enemyComp && { enemy_composition: enemyComp })
+                });
+                
+                const response = await fetch(`/api/builds/optimize?${params}`);
+                const data = await response.json();
+                
+                if (data.error) {
+                    document.getElementById('build-result').innerHTML = `<p style="color: var(--accent-red);">Error: ${data.error}</p>`;
+                    return;
+                }
+                
+                const build = data.build;
+                const buildHtml = `
+                    <div class="build-result">
+                        <h3 style="color: var(--accent-gold); margin-bottom: 15px;">🏆 Optimized Build for ${godName} (${role})</h3>
+                        <div class="build-items">
+                            ${build.items.map((item, index) => `
+                                <div class="build-item">
+                                    <div style="font-weight: bold; color: var(--accent-gold);">${index + 1}</div>
+                                    <div style="font-size: 0.9rem; margin-top: 5px;">${item}</div>
+                                </div>
+                            `).join('')}
+                        </div>
+                        <div style="margin-top: 20px; padding: 15px; background: var(--card-bg); border-radius: 8px;">
+                            <p><strong>💰 Total Cost:</strong> ${build.total_cost} gold</p>
+                            <p><strong>⚡ Power Spike:</strong> ${build.analysis.power_spike}</p>
+                            <p><strong>🎯 Role Fit:</strong> ${build.analysis.role_fit}/10</p>
+                            <p><strong>💡 Strategy:</strong> ${build.analysis.strategy}</p>
+                        </div>
+                    </div>
+                `;
+                
+                document.getElementById('build-result').innerHTML = buildHtml;
+            } catch (error) {
+                console.error('Error optimizing build:', error);
+                document.getElementById('build-result').innerHTML = '<p style="color: var(--accent-red);">Error optimizing build. Please try again.</p>';
+            }
+        }
+
+        // 🚀 Advanced Build Optimizer
+        async function optimizeAdvancedBuild() {
+            const godName = document.getElementById('god-select').value;
+            const role = document.getElementById('role-select').value;
+            const phase = document.getElementById('phase-select').value;
+            const budget = document.getElementById('budget-input').value;
+            const enemyComp = document.getElementById('enemy-comp').value;
+            
+            // 🎯 Collect selected playstyles
+            const selectedPlaystyles = [];
+            const playstyleCheckboxes = document.querySelectorAll('.playstyle-checkbox input[type="checkbox"]:checked');
+            playstyleCheckboxes.forEach(checkbox => {
+                selectedPlaystyles.push(checkbox.value);
+            });
+            
+            if (!godName) {
+                alert('Please select a god first!');
+                return;
+            }
+            
+            document.getElementById('build-result').innerHTML = '<div class="loading">🚀 Running advanced analysis with playstyle preferences...</div>';
+            
+            try {
+                const params = new URLSearchParams({
+                    god: godName,
+                    role: role,
+                    phase: phase,
+                    budget: budget
+                });
+                
+                if (enemyComp) {
+                    enemyComp.split(',').forEach(enemy => {
+                        params.append('enemies', enemy.trim());
+                    });
+                }
+                
+                // Add selected playstyles to parameters
+                selectedPlaystyles.forEach(playstyle => {
+                    params.append('playstyles', playstyle);
+                });
+                
+                const response = await fetch(`/api/builds/advanced?${params}`);
+                const data = await response.json();
+                
+                if (data.error) {
+                    document.getElementById('build-result').innerHTML = `<p style="color: var(--accent-red);">Error: ${data.error}</p>`;
+                    return;
+                }
+                
+                displayAdvancedBuildResult(data);
+                
+                // Also load meta tiers and synergies for other tabs
+                loadMetaTiers();
+                loadItemSynergies();
+                if (enemyComp) {
+                    loadCounterAnalysis(enemyComp.split(',').map(e => e.trim()));
+                }
+                
+            } catch (error) {
+                console.error('Error with advanced optimization:', error);
+                document.getElementById('build-result').innerHTML = '<p style="color: var(--accent-red);">Error with advanced optimization. Please try again.</p>';
+            }
+        }
+
+        function displayAdvancedBuildResult(data) {
+            const analysis = data.analysis;
+            const buildHtml = `
+                <div class="build-result">
+                    <h3 style="color: var(--accent-gold); margin-bottom: 15px;">🚀 Advanced Build for ${data.god} (${data.role})</h3>
+                    
+                    <!-- Build Items -->
+                    <div class="build-items">
+                        ${data.items.map((item, index) => `
+                            <div class="build-item">
+                                <div style="font-weight: bold; color: var(--accent-gold);">${index + 1}</div>
+                                <div style="font-size: 0.9rem; margin-top: 5px;">${item}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                    
+                    <!-- Analysis Grid -->
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-top: 20px;">
+                        <div style="background: var(--card-bg); padding: 15px; border-radius: 8px; border-left: 4px solid var(--accent-gold);">
+                            <h4 style="color: var(--accent-gold); margin-bottom: 10px;">💰 Cost Analysis</h4>
+                            <p><strong>Total Cost:</strong> ${data.total_cost} gold</p>
+                            <p><strong>Game Phase:</strong> ${analysis.game_phase_strength}</p>
+                            <p><strong>Power Spike:</strong> ${analysis.power_spike}</p>
+                        </div>
+                        
+                        <div style="background: var(--card-bg); padding: 15px; border-radius: 8px; border-left: 4px solid var(--accent-blue);">
+                            <h4 style="color: var(--accent-blue); margin-bottom: 10px;">⭐ Performance</h4>
+                            <p><strong>Role Fit:</strong> ${analysis.role_fit}</p>
+                            <p><strong>Meta Score:</strong> ${analysis.meta_score.toFixed(1)}/100</p>
+                            <p><strong>Synergies:</strong> ${analysis.synergies} active</p>
+                        </div>
+                        
+                        <div style="background: var(--card-bg); padding: 15px; border-radius: 8px; border-left: 4px solid var(--accent-green);">
+                            <h4 style="color: var(--accent-green); margin-bottom: 10px;">💡 Strategy</h4>
+                            <p><strong>Focus:</strong> ${analysis.strategy}</p>
+                            <p><strong>Priority:</strong> ${data.role} optimization</p>
+                            <p><strong>Build Type:</strong> Advanced Analysis</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Synergy Display -->
+                    ${data.synergies && data.synergies.length > 0 ? `
+                    <div style="margin-top: 20px; background: var(--secondary-bg); padding: 15px; border-radius: 8px;">
+                        <h4 style="color: var(--accent-gold); margin-bottom: 10px;">🔗 Active Item Synergies</h4>
+                        ${data.synergies.map(synergy => `
+                            <div style="background: var(--card-bg); padding: 10px; margin-bottom: 8px; border-radius: 6px;">
+                                <strong style="color: var(--accent-blue);">${synergy}</strong>
+                            </div>
+                        `).join('')}
+                    </div>
+                    ` : ''}
+                    
+                    <!-- Playstyles Section -->
+                    ${selectedPlaystyles.length > 0 ? `
+                    <div style="margin-top: 20px; background: var(--secondary-bg); padding: 15px; border-radius: 8px;">
+                        <h4 style="color: var(--accent-gold); margin-bottom: 10px;">🎯 Applied Playstyles</h4>
+                        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                            ${selectedPlaystyles.map(playstyle => {
+                                const playstyleNames = {
+                                    'max_damage': '🔥 Max Damage',
+                                    'critical_strike': '💥 Critical Strike',
+                                    'penetration': '🎯 Penetration',
+                                    'attack_speed': '⚡ Attack Speed',
+                                    'max_hp': '❤️ Max HP',
+                                    'max_defense': '🛡️ Max Defense',
+                                    'anti_burst': '💎 Anti-Burst',
+                                    'sustain': '💚 Sustain',
+                                    'cooldown_reduction': '🔄 CDR',
+                                    'mobility': '🏃 Mobility',
+                                    'utility_support': '🤝 Team Support',
+                                    'anti_heal': '🚫 Anti-Heal',
+                                    'early_game': '🌅 Early Game',
+                                    'late_scaling': '🌙 Late Scaling',
+                                    'power_spike': '📈 Power Spike',
+                                    'cost_efficient': '💰 Cost Efficient'
+                                };
+                                return `
+                                    <span style="background: var(--gradient-accent); color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.9rem; font-weight: 600;">
+                                        ${playstyleNames[playstyle] || playstyle}
+                                    </span>
+                                `;
+                            }).join('')}
+                        </div>
+                    </div>
+                    ` : ''}
+                    
+                    <!-- Tips Section -->
+                    <div style="margin-top: 20px; background: var(--secondary-bg); padding: 15px; border-radius: 8px;">
+                        <h4 style="color: var(--accent-gold); margin-bottom: 10px;">💡 Pro Tips</h4>
+                        ${data.tips ? data.tips.map(tip => `
+                            <div style="background: var(--card-bg); padding: 10px; margin-bottom: 8px; border-radius: 6px;">
+                                <span style="color: var(--text-secondary);">${tip}</span>
+                            </div>
+                        `).join('') : '<p style="color: var(--text-muted);">No specific tips available</p>'}
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('build-result').innerHTML = buildHtml;
+        }
+
+        // Advanced Tab Management
+        function showAdvancedTab(tabName) {
+            // Remove active class from all tabs and content
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.advanced-tab-content').forEach(content => content.classList.remove('active'));
+            
+            // Add active class to selected tab and content
+            event.target.classList.add('active');
+            document.getElementById(tabName + '-result').classList.add('active');
+            
+            // Load data for specific tabs
+            if (tabName === 'meta' && !document.querySelector('#meta-result .meta-tier')) {
+                loadMetaTiers();
+            } else if (tabName === 'synergies' && !document.querySelector('#synergies-result .synergy-card')) {
+                loadItemSynergies();
+            }
+        }
+
+        // Load Meta Tiers
+        async function loadMetaTiers() {
+            try {
+                document.getElementById('meta-result').innerHTML = '<div class="loading">Loading meta tiers...</div>';
+                
+                const response = await fetch('/api/builds/meta-tiers');
+                const data = await response.json();
+                
+                if (data.error) {
+                    document.getElementById('meta-result').innerHTML = `<p style="color: var(--accent-red);">Error: ${data.error}</p>`;
+                    return;
+                }
+                
+                const tiersHtml = Object.entries(data.tiers).map(([tierName, items]) => {
+                    const tierClass = tierName.toLowerCase().replace(/[^a-z]/g, '');
+                    return `
+                        <div class="meta-tier">
+                            <div class="tier-header ${tierClass}">${tierName} (${Object.keys(items).length} items)</div>
+                            <div class="tier-items">
+                                ${Object.entries(items).map(([itemName, score]) => `
+                                    <div class="tier-item">
+                                        <strong style="color: var(--accent-gold);">${itemName}</strong>
+                                        <div style="color: var(--text-secondary); font-size: 0.9rem;">Score: ${score}/100</div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+                
+                document.getElementById('meta-result').innerHTML = `
+                    <h3 style="color: var(--accent-gold); margin-bottom: 20px;">📊 Current Meta Tier List</h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 20px;">Items ranked by competitive viability and strength in the current meta.</p>
+                    ${tiersHtml}
+                `;
+                
+            } catch (error) {
+                console.error('Error loading meta tiers:', error);
+                document.getElementById('meta-result').innerHTML = '<p style="color: var(--accent-red);">Error loading meta tiers.</p>';
+            }
+        }
+
+        // Load Item Synergies
+        async function loadItemSynergies() {
+            try {
+                document.getElementById('synergies-result').innerHTML = '<div class="loading">Loading item synergies...</div>';
+                
+                const response = await fetch('/api/builds/synergies');
+                const data = await response.json();
+                
+                if (data.error) {
+                    document.getElementById('synergies-result').innerHTML = `<p style="color: var(--accent-red);">Error: ${data.error}</p>`;
+                    return;
+                }
+                
+                const synergiesHtml = data.synergies
+                    .sort((a, b) => b.synergy_score - a.synergy_score)
+                    .map(synergy => `
+                        <div class="synergy-card">
+                            <div class="synergy-items">
+                                <strong style="color: var(--accent-gold);">${synergy.item1}</strong>
+                                <span style="color: var(--text-muted);">+</span>
+                                <strong style="color: var(--accent-gold);">${synergy.item2}</strong>
+                                <div class="synergy-score">${(synergy.synergy_score * 100).toFixed(0)}%</div>
+                            </div>
+                            <p style="color: var(--text-secondary); margin: 0;">${synergy.reason}</p>
+                        </div>
+                    `).join('');
+                
+                document.getElementById('synergies-result').innerHTML = `
+                    <h3 style="color: var(--accent-gold); margin-bottom: 20px;">🔗 Item Synergy Database</h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 20px;">Discover powerful item combinations that work well together.</p>
+                    ${synergiesHtml}
+                `;
+                
+            } catch (error) {
+                console.error('Error loading synergies:', error);
+                document.getElementById('synergies-result').innerHTML = '<p style="color: var(--accent-red);">Error loading synergies.</p>';
+            }
+        }
+
+        // Load Counter Analysis
+        async function loadCounterAnalysis(enemies) {
+            try {
+                document.getElementById('counter-result').innerHTML = '<div class="loading">Analyzing enemy composition...</div>';
+                
+                const response = await fetch('/api/builds/counter-analysis', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ enemies: enemies })
+                });
+                
+                const data = await response.json();
+                
+                if (data.error) {
+                    document.getElementById('counter-result').innerHTML = `<p style="color: var(--accent-red);">Error: ${data.error}</p>`;
+                    return;
+                }
+                
+                const threatsHtml = Object.entries(data.threat_analysis)
+                    .filter(([threat, active]) => active)
+                    .map(([threat, active]) => `
+                        <div class="threat-card active">
+                            <strong style="color: var(--accent-red);">${threat.replace('_', ' ').toUpperCase()}</strong>
+                            <div style="color: var(--text-secondary); font-size: 0.9rem;">Detected Threat</div>
+                        </div>
+                    `).join('');
+                
+                const strategiesHtml = data.counter_strategy.recommended_strategies
+                    .map(strategy => `
+                        <div style="background: var(--card-bg); padding: 12px; margin-bottom: 10px; border-radius: 6px; border-left: 4px solid var(--accent-blue);">
+                            <span style="color: var(--text-secondary);">${strategy}</span>
+                        </div>
+                    `).join('');
+                
+                document.getElementById('counter-result').innerHTML = `
+                    <h3 style="color: var(--accent-gold); margin-bottom: 20px;">⚔️ Enemy Composition Analysis</h3>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <h4 style="color: var(--accent-red); margin-bottom: 10px;">🚨 Detected Threats</h4>
+                        <div class="threat-analysis">
+                            ${threatsHtml || '<div class="threat-card"><span style="color: var(--text-muted);">No major threats detected</span></div>'}
+                        </div>
+                    </div>
+                    
+                    <div class="counter-recommendations">
+                        <h4 style="color: var(--accent-blue); margin-bottom: 15px;">💡 Counter Strategies</h4>
+                        ${strategiesHtml || '<p style="color: var(--text-muted);">No specific counter strategies needed</p>'}
+                    </div>
+                    
+                    <div style="margin-top: 20px; padding: 15px; background: var(--card-bg); border-radius: 8px;">
+                        <h4 style="color: var(--accent-gold); margin-bottom: 10px;">🎯 Priority Targets</h4>
+                        <p style="color: var(--text-secondary);">Focus on: ${data.counter_strategy.priority_targets.join(', ') || 'No specific targets'}</p>
+                    </div>
+                `;
+                
+            } catch (error) {
+                console.error('Error loading counter analysis:', error);
+                document.getElementById('counter-result').innerHTML = '<p style="color: var(--accent-red);">Error loading counter analysis.</p>';
+            }
+        }
+
+        // Filter functions
+        function filterGods() {
+            const searchTerm = document.getElementById('gods-search').value.toLowerCase();
+            const godCards = document.querySelectorAll('#gods-grid .data-card');
+            
+            godCards.forEach(card => {
+                const godName = card.querySelector('h4').textContent.toLowerCase();
+                const content = card.textContent.toLowerCase();
+                if (godName.includes(searchTerm) || content.includes(searchTerm)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        function filterItems() {
+            const searchTerm = document.getElementById('items-search').value.toLowerCase();
+            const itemCards = document.querySelectorAll('#items-grid .data-card');
+            
+            itemCards.forEach(card => {
+                const itemName = card.querySelector('h4').textContent.toLowerCase();
+                const content = card.textContent.toLowerCase();
+                if (itemName.includes(searchTerm) || content.includes(searchTerm)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Data management
+        async function refreshData() {
+            loadDashboard();
+            showSection('dashboard');
+        }
+
+        async function syncWiki() {
+            if (!confirm('This will sync data from the Smite 2 wiki. Continue?')) return;
+            
+            try {
+                const response = await fetch('/api/wiki/sync', { method: 'POST' });
+                const result = await response.json();
+                alert(`Sync completed: ${result.message}`);
+                loadDashboard();
+            } catch (error) {
+                console.error('Error syncing wiki:', error);
+                alert('Error syncing wiki data.');
+            }
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadDashboard();
+        });
+
+        // Search on Enter key
+        document.getElementById('gods-search')?.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') filterGods();
+        });
+
+        document.getElementById('items-search')?.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') filterItems();
+        });
+    </script>
+</body>
+</html> 

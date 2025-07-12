@@ -1,0 +1,29 @@
+{
+  "patch_info": {
+    "version": "OB12",
+    "title": "SMITE 2 Open Beta 12 - Pace Acceleration",
+    "date": "2024-12-31",
+    "source": "compiled"
+  },
+  "item_changes": {
+    "removed": [],
+    "new": [
+      "Chronos Pendant"
+    ],
+    "updated": [
+      "Spectral Armor",
+      "Brawler's Beat Stick"
+    ]
+  },
+  "meta_impact": {
+    "faster_games": "XP buffs accelerate game pace",
+    "anti_crit_meta": "Spectral Armor hard-counters crit builds",
+    "cooldown_focus": "New options for ability-spam builds"
+  },
+  "strategic_recommendations": [
+    "Build for faster game pace",
+    "Use Spectral Armor against crit builds",
+    "Consider Chronos Pendant for cooldown builds",
+    "Focus on early game pressure"
+  ]
+}

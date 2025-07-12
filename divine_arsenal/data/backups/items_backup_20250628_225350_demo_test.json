@@ -1,0 +1,452 @@
+[
+  {
+    "name": "Aegis of Acceleration",
+    "cost": 0,
+    "tier": 0,
+    "category": "Relic",
+    "stats": {},
+    "passive": "Become immune to damage for 2 seconds",
+    "tags": [
+      "Relic",
+      "Defense",
+      "Active"
+    ]
+  },
+  {
+    "name": "Blink Rune",
+    "cost": 0,
+    "tier": 0,
+    "category": "Relic",
+    "stats": {},
+    "passive": "Instantly teleport to target location",
+    "tags": [
+      "Relic",
+      "Mobility",
+      "Active"
+    ]
+  },
+  {
+    "name": "Phantom Shell",
+    "cost": 0,
+    "tier": 0,
+    "category": "Relic",
+    "stats": {},
+    "passive": "Gain movement speed and ghosting",
+    "tags": [
+      "Relic",
+      "Mobility",
+      "Active"
+    ]
+  },
+  {
+    "name": "Purification Beads",
+    "cost": 0,
+    "tier": 0,
+    "category": "Relic",
+    "stats": {},
+    "passive": "Remove all crowd control effects",
+    "tags": [
+      "Relic",
+      "Utility",
+      "Active"
+    ]
+  },
+  {
+    "name": "Sundering Arc",
+    "cost": 0,
+    "tier": 0,
+    "category": "Relic",
+    "stats": {},
+    "passive": "Deal damage to enemies in front of you",
+    "tags": [
+      "Relic",
+      "Damage",
+      "Active"
+    ]
+  },
+  {
+    "name": "Baron's Brew",
+    "cost": 100,
+    "tier": 0,
+    "category": "Consumable",
+    "stats": {},
+    "passive": "Restore health and mana over time",
+    "tags": [
+      "Consumable",
+      "Health",
+      "Mana"
+    ]
+  },
+  {
+    "name": "Crystalline Egg",
+    "cost": 0,
+    "tier": 0,
+    "category": "Consumable",
+    "stats": {},
+    "passive": "Special egg consumable",
+    "tags": [
+      "Consumable",
+      "Special"
+    ]
+  },
+  {
+    "name": "Cyclops Ward",
+    "cost": 0,
+    "tier": 0,
+    "category": "Consumable",
+    "stats": {},
+    "passive": "Provides vision of area",
+    "tags": [
+      "Consumable",
+      "Vision",
+      "Ward"
+    ]
+  },
+  {
+    "name": "Elixir of Intelligence",
+    "cost": 3000,
+    "tier": 0,
+    "category": "Consumable",
+    "stats": {
+      "magical_power": 50
+    },
+    "passive": "Gain magical power permanently",
+    "tags": [
+      "Consumable",
+      "Magical",
+      "Permanent"
+    ]
+  },
+  {
+    "name": "Elixir of Strength",
+    "cost": 3000,
+    "tier": 0,
+    "category": "Consumable",
+    "stats": {
+      "physical_power": 50
+    },
+    "passive": "Gain physical power permanently",
+    "tags": [
+      "Consumable",
+      "Physical",
+      "Permanent"
+    ]
+  },
+  {
+    "name": "Health Chalice",
+    "cost": 300,
+    "tier": 0,
+    "category": "Consumable",
+    "stats": {},
+    "passive": "Multiple health restoration charges",
+    "tags": [
+      "Consumable",
+      "Health",
+      "Multi-use"
+    ]
+  },
+  {
+    "name": "Health Potion",
+    "cost": 50,
+    "tier": 0,
+    "category": "Consumable",
+    "stats": {},
+    "passive": "Restore health over time",
+    "tags": [
+      "Consumable",
+      "Health"
+    ]
+  },
+  {
+    "name": "Mana Potion",
+    "cost": 50,
+    "tier": 0,
+    "category": "Consumable",
+    "stats": {},
+    "passive": "Restore mana over time",
+    "tags": [
+      "Consumable",
+      "Mana"
+    ]
+  },
+  {
+    "name": "Adamantine Sickle",
+    "cost": 2500,
+    "tier": 3,
+    "category": "Offensive",
+    "stats": {
+      "physical_power": 65,
+      "attack_speed": 25,
+      "critical_chance": 20
+    },
+    "passive": "Critical hits reduce enemy protections",
+    "tags": [
+      "Physical",
+      "Critical",
+      "Penetration"
+    ]
+  },
+  {
+    "name": "Book of the Dead",
+    "cost": 2650,
+    "tier": 3,
+    "category": "Offensive",
+    "stats": {
+      "magical_power": 80,
+      "health": 200,
+      "mana": 200
+    },
+    "passive": "Gain a shield based on mana when taking damage",
+    "tags": [
+      "Magical",
+      "Health",
+      "Mana",
+      "Shield"
+    ]
+  },
+  {
+    "name": "Divine Ruin",
+    "cost": 2300,
+    "tier": 3,
+    "category": "Offensive",
+    "stats": {
+      "magical_power": 90,
+      "magical_penetration": 15
+    },
+    "passive": "Abilities apply anti-heal to enemies",
+    "tags": [
+      "Magical",
+      "Penetration",
+      "Anti-heal"
+    ]
+  },
+  {
+    "name": "Qin's Sais",
+    "cost": 2700,
+    "tier": 3,
+    "category": "Offensive",
+    "stats": {
+      "physical_power": 40,
+      "attack_speed": 30
+    },
+    "passive": "Basic attacks deal bonus damage based on target's health",
+    "tags": [
+      "Physical",
+      "Attack Speed",
+      "% Health"
+    ]
+  },
+  {
+    "name": "Rod of Tahuti",
+    "cost": 3200,
+    "tier": 3,
+    "category": "Offensive",
+    "stats": {
+      "magical_power": 140
+    },
+    "passive": "Increases magical power and penetration",
+    "tags": [
+      "Magical",
+      "Power",
+      "Penetration"
+    ]
+  },
+  {
+    "name": "Soul Reaver",
+    "cost": 2850,
+    "tier": 3,
+    "category": "Offensive",
+    "stats": {
+      "magical_power": 90,
+      "magical_penetration": 10
+    },
+    "passive": "Deal bonus damage based on target's health",
+    "tags": [
+      "Magical",
+      "% Health",
+      "Penetration"
+    ]
+  },
+  {
+    "name": "Caduceus Shield",
+    "cost": 2400,
+    "tier": 3,
+    "category": "Defensive",
+    "stats": {
+      "magical_protection": 60,
+      "health": 250,
+      "cooldown_reduction": 10
+    },
+    "passive": "Nearby allies receive increased healing",
+    "tags": [
+      "Defense",
+      "Support",
+      "Healing",
+      "Aura"
+    ]
+  },
+  {
+    "name": "Cloak of the Avatar",
+    "cost": 2700,
+    "tier": 3,
+    "category": "Defensive",
+    "stats": {
+      "magical_protection": 70,
+      "health": 200,
+      "mana": 200
+    },
+    "passive": "Reduce magical damage taken from abilities",
+    "tags": [
+      "Defense",
+      "Magical Protection",
+      "Damage Reduction"
+    ]
+  },
+  {
+    "name": "Shield of the Phoenix",
+    "cost": 2400,
+    "tier": 3,
+    "category": "Defensive",
+    "stats": {
+      "physical_protection": 60,
+      "health": 300
+    },
+    "passive": "Gain protections when health is low",
+    "tags": [
+      "Defense",
+      "Physical Protection",
+      "Health"
+    ]
+  },
+  {
+    "name": "Spectral Armor",
+    "cost": 2300,
+    "tier": 3,
+    "category": "Defensive",
+    "stats": {
+      "physical_protection": 70,
+      "health": 200
+    },
+    "passive": "Reduce critical hit damage taken",
+    "tags": [
+      "Defense",
+      "Anti-Crit",
+      "Physical Protection"
+    ]
+  },
+  {
+    "name": "Spirit Robe",
+    "cost": 2500,
+    "tier": 3,
+    "category": "Defensive",
+    "stats": {
+      "physical_protection": 40,
+      "magical_protection": 40,
+      "cooldown_reduction": 10
+    },
+    "passive": "Reduce damage taken after being hit by hard CC",
+    "tags": [
+      "Defense",
+      "Damage Reduction",
+      "Cooldown"
+    ]
+  },
+  {
+    "name": "Eye of the Storm",
+    "cost": 2500,
+    "tier": 3,
+    "category": "Hybrid",
+    "stats": {
+      "magical_power": 70,
+      "magical_protection": 40,
+      "cooldown_reduction": 10
+    },
+    "passive": "Abilities have a chance to trigger chain lightning",
+    "tags": [
+      "Magical",
+      "Defense",
+      "Chain Lightning"
+    ]
+  },
+  {
+    "name": "Golden Blade",
+    "cost": 2450,
+    "tier": 3,
+    "category": "Hybrid",
+    "stats": {
+      "physical_power": 50,
+      "attack_speed": 20,
+      "movement_speed": 7
+    },
+    "passive": "Basic attacks hit all nearby enemies",
+    "tags": [
+      "Physical",
+      "Cleave",
+      "Mobility"
+    ]
+  },
+  {
+    "name": "Lifebinder",
+    "cost": 2500,
+    "tier": 3,
+    "category": "Hybrid",
+    "stats": {
+      "magical_power": 60,
+      "health": 200,
+      "lifesteal": 15
+    },
+    "passive": "Healing abilities affect nearby allies",
+    "tags": [
+      "Magical",
+      "Health",
+      "Lifesteal",
+      "Support"
+    ]
+  },
+  {
+    "name": "Shifter's Shield",
+    "cost": 2650,
+    "tier": 3,
+    "category": "Hybrid",
+    "stats": {
+      "physical_power": 40,
+      "physical_protection": 40,
+      "health": 200
+    },
+    "passive": "Gain bonus power when health is low",
+    "tags": [
+      "Physical",
+      "Defense",
+      "Adaptive"
+    ]
+  },
+  {
+    "name": "Axe",
+    "cost": 650,
+    "tier": 1,
+    "category": "Offensive",
+    "stats": {
+      "physical_power": 20
+    },
+    "passive": "Basic physical damage item",
+    "tags": [
+      "Physical",
+      "Starter"
+    ]
+  },
+  {
+    "name": "Battle Axe",
+    "cost": 1400,
+    "tier": 2,
+    "category": "Offensive",
+    "stats": {
+      "physical_power": 35,
+      "attack_speed": 15
+    },
+    "passive": "Enhanced physical damage with attack speed",
+    "tags": [
+      "Physical",
+      "Attack Speed"
+    ]
+  }
+]

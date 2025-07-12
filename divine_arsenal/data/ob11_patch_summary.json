@@ -1,0 +1,29 @@
+{
+  "patch_info": {
+    "version": "OB11",
+    "title": "SMITE 2 Open Beta 11 - Utility Expansion",
+    "date": "2024-12-27",
+    "source": "compiled"
+  },
+  "item_changes": {
+    "removed": [],
+    "new": [
+      "Soul Gem"
+    ],
+    "updated": [
+      "Rod of Tahuti",
+      "Book of Thoth"
+    ]
+  },
+  "meta_impact": {
+    "mage_sustain": "New healing options for mages",
+    "utility_builds": "More viable utility-focused strategies",
+    "build_diversity": "Expanded item pool for creative builds"
+  },
+  "strategic_recommendations": [
+    "Experiment with utility mage builds",
+    "Use Soul Gem for sustain in long fights",
+    "Build for team utility over individual power",
+    "Consider healing options for mages"
+  ]
+}

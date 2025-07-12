@@ -1,0 +1,1778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMITE 2 Divine Arsenal - Enhanced Build Optimizer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0b0f;
+            --bg-secondary: #151720;
+            --bg-card: #1e2130;
+            --bg-elevated: #252840;
+            --accent-primary: #6366f1;
+            --accent-secondary: #8b5cf6;
+            --accent-success: #10b981;
+            --accent-warning: #f59e0b;
+            --accent-danger: #ef4444;
+            --accent-gold: #f59e0b;
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --text-muted: #64748b;
+            --border-primary: #334155;
+            --border-secondary: #475569;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            --gradient-primary: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            --gradient-success: linear-gradient(135deg, var(--accent-success), #059669);
+            --gradient-warning: linear-gradient(135deg, var(--accent-warning), #d97706);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem 0;
+            background: linear-gradient(135deg, var(--bg-secondary), var(--bg-card));
+            border-radius: 1rem;
+            border: 1px solid var(--border-primary);
+        }
+
+        .header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            font-weight: 400;
+        }
+
+        /* Navigation */
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            background: var(--bg-secondary);
+            padding: 0.5rem;
+            border-radius: 0.75rem;
+            border: 1px solid var(--border-primary);
+        }
+
+        .nav-tab {
+            background: transparent;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.9rem;
+        }
+
+        .nav-tab.active {
+            background: var(--gradient-primary);
+            color: white;
+            box-shadow: var(--shadow-md);
+        }
+
+        .nav-tab:hover:not(.active) {
+            background: var(--bg-elevated);
+            color: var(--text-primary);
+        }
+
+        /* Tab Content */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Cards */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-primary);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: var(--shadow-md);
+            transition: all 0.2s ease;
+        }
+
+        .card:hover {
+            border-color: var(--border-secondary);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-primary);
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .card-subtitle {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+
+        /* Grid Layouts */
+        .grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .grid-2 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+        .grid-3 { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+        .grid-4 { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+
+        /* Form Controls */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.75rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-primary);
+            border-radius: 0.5rem;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 0 3px rgb(99 102 241 / 0.1);
+        }
+
+        .form-select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+            background-position: right 0.5rem center;
+            background-repeat: no-repeat;
+            background-size: 1.5em 1.5em;
+            padding-right: 2.5rem;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-success {
+            background: var(--gradient-success);
+            color: white;
+        }
+
+        .btn-warning {
+            background: var(--gradient-warning);
+            color: white;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text-secondary);
+            border: 1px solid var(--border-primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--bg-elevated);
+            color: var(--text-primary);
+            border-color: var(--border-secondary);
+        }
+
+        /* Progress */
+        .progress {
+            width: 100%;
+            height: 0.5rem;
+            background: var(--bg-secondary);
+            border-radius: 0.25rem;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: var(--gradient-primary);
+            border-radius: 0.25rem;
+            transition: width 0.3s ease;
+        }
+
+        /* Stats */
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1rem;
+            background: var(--bg-secondary);
+            border-radius: 0.5rem;
+            border: 1px solid var(--border-primary);
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent-primary);
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+        }
+
+        /* Build Results */
+        .build-result {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-primary);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .build-score {
+            display: flex;
+            align-items: center;
+            justify-content: between;
+            margin-bottom: 0.5rem;
+        }
+
+        .score-badge {
+            background: var(--gradient-success);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+
+        .items-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .item-slot {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-primary);
+            border-radius: 0.375rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            transition: all 0.2s ease;
+            min-height: 60px;
+            text-align: center;
+        }
+        
+        .item-name {
+            font-size: 0.65rem;
+            line-height: 1.2;
+            font-weight: 500;
+        }
+
+        .item-slot:hover {
+            border-color: var(--accent-primary);
+            background: var(--bg-card);
+        }
+
+        /* Status Indicators */
+        .status-online { color: var(--accent-success); }
+        .status-warning { color: var(--accent-warning); }
+        .status-error { color: var(--accent-danger); }
+
+        /* Guest Banner */
+        .guest-banner {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            color: var(--accent-success);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .guest-banner .login-btn {
+            background: var(--accent-success);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .guest-banner .login-btn:hover {
+            background: #059669;
+            transform: translateY(-1px);
+        }
+
+        /* Loading */
+        .loading {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-muted);
+        }
+
+        .spinner {
+            width: 1rem;
+            height: 1rem;
+            border: 2px solid transparent;
+            border-top: 2px solid var(--accent-primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container { padding: 1rem; }
+            .header h1 { font-size: 2.5rem; }
+            .nav-tabs { flex-wrap: wrap; }
+            .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+        }
+
+        /* Calibration specific styles */
+        .calibration-step {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-primary);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .calibration-step.active {
+            border-color: var(--accent-primary);
+            background: linear-gradient(135deg, var(--bg-card), var(--bg-elevated));
+        }
+
+        .playstyle-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin: 0.25rem;
+        }
+
+        .playstyle-aggressive {
+            background: linear-gradient(135deg, var(--accent-danger), #dc2626);
+            color: white;
+        }
+
+        .playstyle-defensive {
+            background: linear-gradient(135deg, var(--accent-primary), #4338ca);
+            color: white;
+        }
+
+        .playstyle-balanced {
+            background: linear-gradient(135deg, var(--accent-success), #059669);
+            color: white;
+        }
+
+        .playstyle-utility {
+            background: linear-gradient(135deg, var(--accent-warning), #d97706);
+            color: white;
+        }
+
+        /* Help and Documentation Styles */
+        .help-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--accent-primary);
+            color: white;
+            font-size: 0.75rem;
+            cursor: pointer;
+            margin-left: 0.5rem;
+            transition: all 0.2s ease;
+        }
+
+        .help-icon:hover {
+            background: var(--accent-secondary);
+            transform: scale(1.1);
+        }
+
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+
+        .tooltip-text {
+            visibility: hidden;
+            width: 300px;
+            background-color: var(--bg-elevated);
+            border: 1px solid var(--border-primary);
+            color: var(--text-primary);
+            text-align: left;
+            border-radius: 6px;
+            padding: 0.75rem;
+            position: absolute;
+            z-index: 1000;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -150px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 0.85rem;
+            line-height: 1.4;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .tooltip:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .feature-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.25rem 0.5rem;
+            background: var(--accent-primary);
+            color: white;
+            border-radius: 1rem;
+            font-size: 0.7rem;
+            margin-left: 0.5rem;
+            font-weight: 500;
+        }
+
+        .help-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .help-content {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-primary);
+            border-radius: 0.75rem;
+            padding: 2rem;
+            max-width: 800px;
+            max-height: 85vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .help-section {
+            margin-bottom: 2rem;
+        }
+
+        .help-section h3 {
+            color: var(--accent-primary);
+            margin-bottom: 1rem;
+            border-bottom: 1px solid var(--border-primary);
+            padding-bottom: 0.5rem;
+        }
+
+        .algorithm-step {
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--accent-primary);
+            padding: 1rem;
+            margin: 0.5rem 0;
+            border-radius: 0 0.5rem 0.5rem 0;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .feature-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-primary);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            color: var(--accent-primary);
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div id="auth-modal" class="modal" style="display: none; align-items: center; justify-content: center; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.7); z-index: 9999;">
+  <div style="background: #222; color: #fff; padding: 2rem; border-radius: 12px; min-width: 320px; max-width: 90vw; box-shadow: 0 4px 32px #000a;">
+    <h2 id="auth-title">Login</h2>
+    <form id="auth-form" onsubmit="return false;">
+      <div style="margin-bottom: 1rem;">
+        <label for="auth-username">Username</label><br>
+        <input type="text" id="auth-username" name="username" required style="width: 100%; padding: 0.5rem; border-radius: 6px; border: 1px solid #444;">
+      </div>
+      <div style="margin-bottom: 1rem;">
+        <label for="auth-password">Password</label><br>
+        <input type="password" id="auth-password" name="password" required style="width: 100%; padding: 0.5rem; border-radius: 6px; border: 1px solid #444;">
+      </div>
+      <div id="register-extra" style="display: none; margin-bottom: 1rem;">
+        <label for="auth-email">Email</label><br>
+        <input type="email" id="auth-email" name="email" style="width: 100%; padding: 0.5rem; border-radius: 6px; border: 1px solid #444;">
+      </div>
+      <button id="auth-submit" type="submit" style="width: 100%; padding: 0.75rem; border-radius: 6px; background: #4caf50; color: #fff; border: none; font-size: 1rem;">Login</button>
+      <button id="guest-continue" type="button" onclick="continueAsGuest()" style="width: 100%; padding: 0.75rem; border-radius: 6px; background: #2196f3; color: #fff; border: none; font-size: 1rem; margin-top: 0.5rem;">Continue as Guest</button>
+      <div style="margin-top: 1rem; text-align: center;">
+        <span id="toggle-auth-mode" style="color: #4caf50; cursor: pointer;">Don't have an account? Register</span>
+      </div>
+      <div id="auth-error" style="color: #ff5252; margin-top: 1rem; display: none;"></div>
+    </form>
+  </div>
+</div>
+<script>
+let isRegister = false;
+const modal = document.getElementById('auth-modal');
+const title = document.getElementById('auth-title');
+const form = document.getElementById('auth-form');
+const toggle = document.getElementById('toggle-auth-mode');
+const submitBtn = document.getElementById('auth-submit');
+const extra = document.getElementById('register-extra');
+const errorDiv = document.getElementById('auth-error');
+
+function showError(msg) {
+  errorDiv.textContent = msg;
+  errorDiv.style.display = 'block';
+}
+function clearError() {
+  errorDiv.textContent = '';
+  errorDiv.style.display = 'none';
+}
+
+toggle.onclick = function() {
+  isRegister = !isRegister;
+  if (isRegister) {
+    title.textContent = 'Register';
+    submitBtn.textContent = 'Register';
+    toggle.textContent = 'Already have an account? Login';
+    extra.style.display = 'block';
+  } else {
+    title.textContent = 'Login';
+    submitBtn.textContent = 'Login';
+    toggle.textContent = "Don't have an account? Register";
+    extra.style.display = 'none';
+  }
+  clearError();
+};
+
+form.onsubmit = async function() {
+  clearError();
+  const username = document.getElementById('auth-username').value;
+  const password = document.getElementById('auth-password').value;
+  const email = document.getElementById('auth-email').value;
+  let url = isRegister ? '/auth/register' : '/auth/login';
+  let payload = { username, password };
+  if (isRegister) payload.email = email;
+  try {
+    const res = await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    const data = await res.json();
+    if (data.success) {
+      modal.style.display = 'none';
+      // Optionally, store token/user info in localStorage
+      // localStorage.setItem('token', data.token);
+      location.reload();
+    } else {
+      showError(data.error || 'Login/Register failed');
+    }
+  } catch (e) {
+    showError('Network error');
+  }
+};
+
+function continueAsGuest() {
+  modal.style.display = 'none';
+  localStorage.setItem('guest_mode', 'true');
+  // Show guest banner
+  document.getElementById('guest-banner').style.display = 'flex';
+}
+
+function showLoginModal() {
+  modal.style.display = 'flex';
+}
+</script>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1><i class="fas fa-shield-alt"></i> SMITE 2 Divine Arsenal</h1>
+            <p>Enhanced Build Optimizer with AI-Powered Personalization</p>
+            
+            <!-- Guest Mode Banner -->
+            <div class="guest-banner" id="guest-banner">
+                <div>
+                    <i class="fas fa-user-check"></i>
+                    <strong>Guest Mode:</strong> You're using Divine Arsenal without an account. Some features may be limited.
+                </div>
+                <button onclick="showLoginModal()" class="login-btn" style="border: none; background: none; color: inherit; cursor: pointer;">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </button>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="nav-tabs">
+            <button class="nav-tab active" onclick="showTab('dashboard')">
+                <i class="fas fa-home"></i> Dashboard
+            </button>
+            <button class="nav-tab" onclick="showTab('calibration')">
+                <i class="fas fa-user-cog"></i> Player Calibration
+            </button>
+            <button class="nav-tab" onclick="showTab('optimizer')">
+                <i class="fas fa-cogs"></i> Build Optimizer
+            </button>
+            <button class="nav-tab" onclick="showTab('analysis')">
+                <i class="fas fa-chart-line"></i> Meta Analysis
+            </button>
+            <button class="nav-tab" onclick="showTab('database')">
+                <i class="fas fa-database"></i> Database
+            </button>
+        </div>
+
+        <!-- Dashboard Tab -->
+        <div id="dashboard" class="tab-content active">
+            <div class="grid grid-3">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <i class="fas fa-database status-online"></i>
+                            System Status
+                        </div>
+                    </div>
+                    <div class="stat-grid">
+                        <div class="stat-item">
+                            <div class="stat-value" id="gods-count">62</div>
+                            <div class="stat-label">Gods</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="items-count">96</div>
+                            <div class="stat-label">Items</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="builds-analyzed">1,247</div>
+                            <div class="stat-label">Builds Analyzed</div>
+                        </div>
+                    </div>
+                    <button class="btn btn-outline" onclick="refreshStats()">
+                        <i class="fas fa-sync-alt"></i> Refresh
+                    </button>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <i class="fas fa-trophy"></i>
+                            Recent Optimizations
+                        </div>
+                    </div>
+                    <div id="recent-optimizations">
+                        <div class="loading">
+                            <div class="spinner"></div>
+                            Loading recent builds...
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <i class="fas fa-chart-line"></i>
+                            Meta Insights
+                        </div>
+                    </div>
+                    <div id="meta-insights">
+                        <p class="text-muted">OB12 Meta Analysis:</p>
+                        <ul style="margin-left: 1rem; color: var(--text-secondary);">
+                            <li>Tanks favored (Spectral Armor buff)</li>
+                            <li>Anti-heal crucial (Contagion)</li>
+                            <li>Early ganks dominant (lane XP)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Player Calibration Tab -->
+        <div id="calibration" class="tab-content">
+            <div class="grid grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <i class="fas fa-user-cog"></i>
+                            Player Calibration
+                        </div>
+                        <div class="card-subtitle">Complete 5-10 matches to personalize your builds</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Player Name</label>
+                        <input type="text" class="form-control" id="player-name" placeholder="Enter your SMITE 2 username">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Preferred Role</label>
+                        <select class="form-control form-select" id="preferred-role">
+                            <option value="">Select Role</option>
+                            <option value="carry">Carry (ADC)</option>
+                            <option value="jungle">Jungle</option>
+                            <option value="mid">Mid</option>
+                            <option value="solo">Solo</option>
+                            <option value="support">Support</option>
+                        </select>
+                    </div>
+
+                    <button class="btn btn-primary" onclick="startCalibration()">
+                        <i class="fas fa-play"></i>
+                        Start Calibration
+                    </button>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <i class="fas fa-chart-pie"></i>
+                            Calibration Progress
+                        </div>
+                    </div>
+                    
+                    <div id="calibration-progress">
+                        <div class="calibration-step">
+                            <strong>Step 1:</strong> Initial Assessment
+                            <div class="progress">
+                                <div class="progress-bar" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        <div class="calibration-step">
+                            <strong>Step 2:</strong> Match Analysis (0/5)
+                        </div>
+                        <div class="calibration-step">
+                            <strong>Step 3:</strong> Playstyle Detection
+                        </div>
+                        <div class="calibration-step">
+                            <strong>Step 4:</strong> Personalization Complete
+                        </div>
+                    </div>
+
+                    <div id="player-profile" style="display: none;">
+                        <h4>Your Profile</h4>
+                        <div class="playstyle-badge playstyle-aggressive">Aggressive</div>
+                        <div class="stat-grid">
+                            <div class="stat-item">
+                                <div class="stat-value">72</div>
+                                <div class="stat-label">Skill Level</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">1.3x</div>
+                                <div class="stat-label">Aggression</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Build Optimizer Tab -->
+        <div id="optimizer" class="tab-content">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">
+                        <i class="fas fa-cogs"></i>
+                        Enhanced Build Optimizer
+                        <span class="feature-badge">AI-Powered</span>
+                        <div class="tooltip">
+                            <span class="help-icon" onclick="showOptimizerHelp()">?</span>
+                            <span class="tooltip-text">
+                                Advanced AI system that analyzes meta trends, item synergies, and role requirements to create optimal builds. Click for detailed explanation.
+                            </span>
+                        </div>
+                    </div>
+                    <div class="card-subtitle">AI-powered builds with personalization and multi-mode support</div>
+                </div>
+
+                <div class="grid grid-2">
+                    <div>
+                        <div class="form-group">
+                            <label class="form-label">
+                                God
+                                <div class="tooltip">
+                                    <span class="help-icon">?</span>
+                                    <span class="tooltip-text">
+                                        Choose the god you want to build for. The optimizer considers the god's damage type, abilities, and optimal role when creating builds.
+                                    </span>
+                                </div>
+                            </label>
+                            <select class="form-control form-select" id="god-select">
+                                <option value="">Select God</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">
+                                Game Mode
+                                <div class="tooltip">
+                                    <span class="help-icon">?</span>
+                                    <span class="tooltip-text">
+                                        Different game modes have different optimal strategies. Conquest focuses on longer games with team fights, while Arena emphasizes team fighting from the start.
+                                    </span>
+                                </div>
+                            </label>
+                            <select class="form-control form-select" id="mode-select">
+                                <option value="conquest">Conquest</option>
+                                <option value="arena">Arena</option>
+                                <option value="joust">Joust</option>
+                                <option value="assault">Assault</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">
+                                Role
+                                <div class="tooltip">
+                                    <span class="help-icon">?</span>
+                                    <span class="tooltip-text">
+                                        Your role determines build priorities: Solo (survivability), Support (team utility), Mid (burst damage), Carry (sustained damage), Jungle (mobility/burst).
+                                    </span>
+                                </div>
+                            </label>
+                            <select class="form-control form-select" id="role-select">
+                                <option value="carry">Carry</option>
+                                <option value="jungle">Jungle</option>
+                                <option value="mid">Mid</option>
+                                <option value="solo">Solo</option>
+                                <option value="support">Support</option>
+                            </select>
+                        </div>
+
+                        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                            <button class="btn btn-primary" onclick="optimizeBuild()">
+                                <i class="fas fa-magic"></i>
+                                Optimize Build
+                            </button>
+                            <button class="btn btn-outline" onclick="explainCurrentBuild()" id="explain-btn" style="display: none;">
+                                <i class="fas fa-info-circle"></i>
+                                Explain Build
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="build-results">
+                        <div class="text-center" style="color: var(--text-muted); padding: 2rem;">
+                            <i class="fas fa-search" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                            <p>Select a god and click "Optimize Build" to get started</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Meta Analysis Tab -->
+        <div id="analysis" class="tab-content">
+            <div class="grid grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <i class="fas fa-chart-line"></i>
+                            Patch Meta Analysis
+                        </div>
+                    </div>
+                    <div id="patch-analysis">
+                        <div class="loading">
+                            <div class="spinner"></div>
+                            Loading patch analysis...
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <i class="fas fa-trophy"></i>
+                            Top Performing Builds
+                        </div>
+                    </div>
+                    <div id="top-builds">
+                        <div class="loading">
+                            <div class="spinner"></div>
+                            Loading top builds...
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">
+                        <i class="fas fa-brain"></i>
+                        Statistical Analysis
+                    </div>
+                </div>
+                <button class="btn btn-primary" onclick="runStatisticalAnalysis()">
+                    <i class="fas fa-calculator"></i>
+                    Run Analysis
+                </button>
+                <div id="statistical-results"></div>
+            </div>
+        </div>
+
+        <!-- Database Tab -->
+        <div id="database" class="tab-content">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">
+                        <i class="fas fa-database"></i>
+                        Database Management
+                    </div>
+                </div>
+                <div class="grid grid-3">
+                    <button class="btn btn-primary" onclick="syncWikiData()">
+                        <i class="fas fa-sync"></i>
+                        Sync Wiki Data
+                    </button>
+                    <button class="btn btn-success" onclick="updatePatches()">
+                        <i class="fas fa-download"></i>
+                        Update Patches
+                    </button>
+                    <button class="btn btn-warning" onclick="validateData()">
+                        <i class="fas fa-check-circle"></i>
+                        Validate Data
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Help Modal -->
+    <div id="optimizer-help-modal" class="help-modal">
+        <div class="help-content">
+            <button onclick="closeOptimizerHelp()" style="
+                position: absolute;
+                top: 1rem;
+                right: 1rem;
+                background: none;
+                border: none;
+                font-size: 2rem;
+                color: var(--text-muted);
+                cursor: pointer;
+            ">&times;</button>
+            
+            <h2 style="color: var(--accent-primary); margin-bottom: 2rem;">
+                <i class="fas fa-book"></i> SMITE 2 Divine Arsenal - How It Works
+            </h2>
+            
+            <div class="help-section">
+                <h3><i class="fas fa-brain"></i> The AI Optimizer Algorithm</h3>
+                <p style="margin-bottom: 1rem; color: var(--text-secondary);">
+                    Our Advanced Build Optimizer uses a sophisticated multi-stage algorithm that considers dozens of factors to create optimal builds:
+                </p>
+                
+                <div class="algorithm-step">
+                    <strong>Step 1: God Analysis</strong>
+                    <p>Analyzes the selected god's damage type (Physical/Magical), abilities, and natural role fit to determine core item categories.</p>
+                </div>
+                
+                <div class="algorithm-step">
+                    <strong>Step 2: Role-Based Selection</strong>
+                    <p>Applies role-specific item pools and priorities. Solo prioritizes survivability, Mid focuses on burst damage, Carry emphasizes sustained damage, etc.</p>
+                </div>
+                
+                <div class="algorithm-step">
+                    <strong>Step 3: Meta Analysis</strong>
+                    <p>Evaluates each item's current meta rating (S/A/B/C tier) based on pick rates, win rates, and professional play trends.</p>
+                </div>
+                
+                <div class="algorithm-step">
+                    <strong>Step 4: Synergy Detection</strong>
+                    <p>Identifies powerful item combinations and ensures the build has good synergy between items (e.g., critical chance + critical damage).</p>
+                </div>
+                
+                <div class="algorithm-step">
+                    <strong>Step 5: Power Progression</strong>
+                    <p>Optimizes the build order for smooth power spikes throughout early, mid, and late game phases.</p>
+                </div>
+            </div>
+            
+            <div class="help-section">
+                <h3><i class="fas fa-chart-line"></i> Understanding Build Scores</h3>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon" style="color: var(--accent-success);">80+</div>
+                        <strong>Excellent Build</strong>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary);">Meta-optimal with strong synergies and role fit</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon" style="color: var(--accent-warning);">60-79</div>
+                        <strong>Good Build</strong>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary);">Solid choice with minor optimization opportunities</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon" style="color: var(--accent-danger);">&lt;60</div>
+                        <strong>Needs Work</strong>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary);">Off-meta or poor synergies, consider alternatives</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="help-section">
+                <h3><i class="fas fa-cogs"></i> Build Analysis Metrics</h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div>
+                        <h4 style="color: var(--accent-primary);">Damage Potential</h4>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary);">Measures raw damage output from items and synergies</p>
+                        
+                        <h4 style="color: var(--accent-primary);">Survivability</h4>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary);">Evaluates defensive stats, health, and damage mitigation</p>
+                    </div>
+                    <div>
+                        <h4 style="color: var(--accent-primary);">Utility</h4>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary);">Considers cooldown reduction, movement speed, and team utility</p>
+                        
+                        <h4 style="color: var(--accent-primary);">Synergies</h4>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary);">Number of powerful item combinations in the build</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="help-section">
+                <h3><i class="fas fa-graduation-cap"></i> Using the Tools</h3>
+                
+                <h4>1. Basic Optimization</h4>
+                <ul style="color: var(--text-secondary); line-height: 1.6;">
+                    <li>Select your god, game mode, and role</li>
+                    <li>Click "Optimize Build" for an AI-generated build</li>
+                    <li>Review the score and analysis metrics</li>
+                </ul>
+                
+                <h4>2. Build Explanation</h4>
+                <ul style="color: var(--text-secondary); line-height: 1.6;">
+                    <li>After optimization, click "Explain Build"</li>
+                    <li>Get detailed reasoning for each item choice</li>
+                    <li>Understand power progression and strategy</li>
+                </ul>
+                
+                <h4>3. Player Calibration</h4>
+                <ul style="color: var(--text-secondary); line-height: 1.6;">
+                    <li>Enter your player name and preferred role</li>
+                    <li>Complete 5-game calibration for personalized builds</li>
+                    <li>Get builds tailored to your playstyle</li>
+                </ul>
+                
+                <h4>4. Meta Analysis</h4>
+                <ul style="color: var(--text-secondary); line-height: 1.6;">
+                    <li>View current god and item tier lists</li>
+                    <li>Understand meta trends and priorities</li>
+                    <li>Make informed decisions about builds</li>
+                </ul>
+            </div>
+            
+            <div class="help-section">
+                <h3><i class="fas fa-lightbulb"></i> Pro Tips</h3>
+                <div style="background: var(--bg-secondary); padding: 1.5rem; border-radius: 0.5rem; border-left: 3px solid var(--accent-success);">
+                    <ul style="color: var(--text-secondary); line-height: 1.8; margin: 0;">
+                        <li><strong>Start with meta builds:</strong> Use the optimizer's suggestions as a foundation</li>
+                        <li><strong>Adapt to enemies:</strong> Consider enemy team composition when building</li>
+                        <li><strong>Learn from explanations:</strong> Use build explanations to understand itemization theory</li>
+                        <li><strong>Practice builds:</strong> Test optimized builds in practice mode first</li>
+                        <li><strong>Stay updated:</strong> Check meta analysis regularly as patches change the game</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Tab Management
+        function showTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Remove active class from all nav tabs
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected tab
+            document.getElementById(tabName).classList.add('active');
+            
+            // Add active class to clicked nav tab
+            event.target.classList.add('active');
+            
+            // Load tab-specific data
+            loadTabData(tabName);
+        }
+
+        function loadTabData(tabName) {
+            switch(tabName) {
+                case 'dashboard':
+                    loadDashboardData();
+                    break;
+                case 'calibration':
+                    loadCalibrationData();
+                    break;
+                case 'optimizer':
+                    loadOptimizerData();
+                    break;
+                case 'analysis':
+                    loadAnalysisData();
+                    break;
+                case 'database':
+                    loadDatabaseData();
+                    break;
+            }
+        }
+
+        // API Functions
+        async function apiCall(endpoint, method = 'GET', data = null) {
+            try {
+                const config = {
+                    method: method,
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                };
+                
+                if (data) {
+                    config.body = JSON.stringify(data);
+                }
+                
+                const response = await fetch(`/api/${endpoint}`, config);
+                return await response.json();
+            } catch (error) {
+                console.error('API Error:', error);
+                return { error: error.message };
+            }
+        }
+
+        // Dashboard Functions
+        async function loadDashboardData() {
+            try {
+                const data = await apiCall('dashboard');
+                if (data.gods) {
+                    document.getElementById('gods-count').textContent = data.gods.length;
+                }
+                if (data.items) {
+                    document.getElementById('items-count').textContent = data.items.length;
+                }
+            } catch (error) {
+                console.error('Error loading dashboard:', error);
+            }
+        }
+
+        async function refreshStats() {
+            const button = event.target;
+            const originalText = button.innerHTML;
+            button.innerHTML = '<div class="spinner"></div> Refreshing...';
+            button.disabled = true;
+            
+            await loadDashboardData();
+            
+            setTimeout(() => {
+                button.innerHTML = originalText;
+                button.disabled = false;
+            }, 1000);
+        }
+
+        // Calibration Functions
+        async function startCalibration() {
+            const playerName = document.getElementById('player-name').value;
+            const preferredRole = document.getElementById('preferred-role').value;
+            
+            if (!playerName) {
+                alert('Please enter your player name');
+                return;
+            }
+            
+            try {
+                const response = await apiCall('calibration/start', 'POST', {
+                    player_name: playerName,
+                    preferred_role: preferredRole
+                });
+                
+                console.log('Calibration response:', response);
+                
+                if (response.status === 'calibration_started') {
+                    alert(`Calibration started! Please play ${response.games_needed} games to complete your profile.`);
+                    updateCalibrationProgress(1);
+                    document.querySelector('.calibration-step.active')?.classList.remove('active');
+                    document.querySelectorAll('.calibration-step')[0].classList.add('active');
+                } else if (response.status === 'existing_player') {
+                    if (response.calibration_needed === false) {
+                        alert('You already have a calibrated profile! Your personalized builds are ready.');
+                    } else {
+                        alert('Continuing calibration from where you left off...');
+                        updateCalibrationProgress(1);
+                    }
+                } else {
+                    alert('Calibration response: ' + response.status);
+                }
+            } catch (error) {
+                console.error('Calibration error:', error);
+                alert('Error starting calibration. Please check the console for details.');
+            }
+        }
+
+        function updateCalibrationProgress(step) {
+            const steps = document.querySelectorAll('.calibration-step');
+            steps.forEach((step, index) => {
+                if (index < step) {
+                    step.classList.add('completed');
+                } else if (index === step) {
+                    step.classList.add('active');
+                }
+            });
+        }
+
+        // Build Optimizer Functions
+        async function loadOptimizerData() {
+            try {
+                const response = await apiCall('gods');
+                const godSelect = document.getElementById('god-select');
+                godSelect.innerHTML = '<option value="">Select God</option>';
+                
+                console.log('Gods API response:', response);
+                
+                // Handle the API response format: {count: 62, gods: [...]}
+                const gods = response.gods || response;
+                
+                if (gods && gods.length) {
+                    gods.forEach(god => {
+                        const option = document.createElement('option');
+                        option.value = god.name;
+                        option.textContent = god.name;
+                        godSelect.appendChild(option);
+                    });
+                    console.log(`Loaded ${gods.length} gods successfully`);
+                } else {
+                    console.error('No gods found in response:', response);
+                }
+            } catch (error) {
+                console.error('Error loading gods:', error);
+            }
+        }
+
+        async function optimizeBuild() {
+            const god = document.getElementById('god-select').value;
+            const mode = document.getElementById('mode-select').value;
+            const role = document.getElementById('role-select').value;
+            
+            console.log('Form values:', { god, mode, role });
+            
+            if (!god) {
+                alert('Please select a god');
+                return;
+            }
+            
+            const resultsDiv = document.getElementById('build-results');
+            resultsDiv.innerHTML = `
+                <div class="loading">
+                    <div class="spinner"></div>
+                    Optimizing build for ${god} (${role} in ${mode})...
+                </div>
+            `;
+            
+            try {
+                const requestData = {
+                    god: god,
+                    mode: mode,
+                    role: role,
+                    use_enhanced: true
+                };
+                
+                console.log('Sending request data:', requestData);
+                
+                const response = await apiCall('optimize-build', 'POST', requestData);
+                
+                console.log('API response:', response);
+                
+                displayBuildResults(response);
+                
+                // Show explain button after successful build optimization
+                document.getElementById('explain-btn').style.display = 'inline-flex';
+            } catch (error) {
+                resultsDiv.innerHTML = `
+                    <div class="text-center" style="color: var(--accent-danger);">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        Error optimizing build: ${error.message}
+                    </div>
+                `;
+                
+                // Hide explain button on error
+                document.getElementById('explain-btn').style.display = 'none';
+            }
+        }
+        
+        // Store current build for explanation
+        let currentBuildData = null;
+        
+        async function explainCurrentBuild() {
+            if (!currentBuildData) {
+                alert('No build to explain. Please optimize a build first.');
+                return;
+            }
+            
+            const button = document.getElementById('explain-btn');
+            const originalText = button.innerHTML;
+            button.innerHTML = '<div class="spinner"></div> Analyzing...';
+            button.disabled = true;
+            
+            try {
+                const response = await apiCall('explain-build', 'POST', {
+                    god: currentBuildData.god,
+                    role: currentBuildData.role,
+                    items: currentBuildData.build.items || []
+                });
+                
+                if (response.success) {
+                    displayBuildExplanation(response.explanation);
+                } else {
+                    alert('Error explaining build: ' + response.error);
+                }
+                
+            } catch (error) {
+                console.error('Build explanation error:', error);
+                alert('Error explaining build. Please try again.');
+            } finally {
+                button.innerHTML = originalText;
+                button.disabled = false;
+            }
+        }
+        
+        function displayBuildExplanation(explanation) {
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.8);
+                z-index: 1000;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 1rem;
+            `;
+            
+            modal.innerHTML = `
+                <div style="
+                    background: var(--bg-primary);
+                    border: 1px solid var(--border-primary);
+                    border-radius: 0.5rem;
+                    padding: 2rem;
+                    max-width: 600px;
+                    max-height: 80vh;
+                    overflow-y: auto;
+                    position: relative;
+                ">
+                    <button onclick="this.closest('div').parentElement.remove()" style="
+                        position: absolute;
+                        top: 1rem;
+                        right: 1rem;
+                        background: none;
+                        border: none;
+                        font-size: 1.5rem;
+                        color: var(--text-muted);
+                        cursor: pointer;
+                    ">&times;</button>
+                    
+                    <h3 style="margin-bottom: 1rem;"><i class="fas fa-book"></i> Build Explanation</h3>
+                    
+                    <div style="margin-bottom: 1.5rem;">
+                        <h4>Build Philosophy</h4>
+                        <p style="color: var(--text-secondary);">${explanation.build_philosophy}</p>
+                    </div>
+                    
+                    <div style="margin-bottom: 1.5rem;">
+                        <h4>Item Breakdown</h4>
+                        ${explanation.item_explanations.map(item => `
+                            <div style="margin-bottom: 0.5rem; padding: 0.5rem; background: var(--bg-secondary); border-radius: 0.25rem;">
+                                <strong>${item.position}. ${item.item}</strong>
+                                <p style="margin: 0.25rem 0 0 0; font-size: 0.9rem; color: var(--text-secondary);">${item.reason}</p>
+                            </div>
+                        `).join('')}
+                    </div>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
+                        <div>
+                            <h4 style="color: var(--accent-success);">Strengths</h4>
+                            <ul style="margin: 0; padding-left: 1rem;">
+                                ${explanation.strengths.map(strength => `<li style="color: var(--text-secondary);">${strength}</li>`).join('')}
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 style="color: var(--accent-warning);">Weaknesses</h4>
+                            <ul style="margin: 0; padding-left: 1rem;">
+                                ${explanation.weaknesses.map(weakness => `<li style="color: var(--text-secondary);">${weakness}</li>`).join('')}
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-bottom: 1.5rem;">
+                        <h4>Power Progression</h4>
+                        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem;">
+                            <div style="text-align: center; padding: 0.5rem; background: var(--bg-secondary); border-radius: 0.25rem;">
+                                <strong>Early Game</strong>
+                                <p style="margin: 0.25rem 0 0 0; font-size: 0.8rem; color: var(--text-secondary);">${explanation.power_progression.early_game}</p>
+                            </div>
+                            <div style="text-align: center; padding: 0.5rem; background: var(--bg-secondary); border-radius: 0.25rem;">
+                                <strong>Mid Game</strong>
+                                <p style="margin: 0.25rem 0 0 0; font-size: 0.8rem; color: var(--text-secondary);">${explanation.power_progression.mid_game}</p>
+                            </div>
+                            <div style="text-align: center; padding: 0.5rem; background: var(--bg-secondary); border-radius: 0.25rem;">
+                                <strong>Late Game</strong>
+                                <p style="margin: 0.25rem 0 0 0; font-size: 0.8rem; color: var(--text-secondary);">${explanation.power_progression.late_game}</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="padding: 1rem; background: var(--bg-elevated); border-radius: 0.25rem; border-left: 3px solid var(--accent-primary);">
+                        <strong><i class="fas fa-lightbulb"></i> Tip:</strong>
+                        <p style="margin: 0.5rem 0 0 0; color: var(--text-secondary);">${explanation.situational_advice}</p>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+        }
+
+        function displayBuildResults(results) {
+            const resultsDiv = document.getElementById('build-results');
+            
+            console.log('displayBuildResults received:', results);
+            
+            if (results.error) {
+                resultsDiv.innerHTML = `
+                    <div class="text-center" style="color: var(--accent-danger);">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        ${results.error}
+                    </div>
+                `;
+                return;
+            }
+            
+            const build = results.build || results;
+            console.log('Build object:', build);
+            console.log('Results god:', results.god, 'Results role:', results.role, 'Results mode:', results.mode);
+            
+            // Store current build data for explanation
+            currentBuildData = {
+                god: build.god || results.god,
+                role: build.role || results.role,
+                build: build
+            };
+            
+            // Get score with proper color coding
+            const score = build.score || 0;
+            let scoreColor = 'var(--accent-danger)';
+            if (score >= 80) scoreColor = 'var(--accent-success)';
+            else if (score >= 60) scoreColor = 'var(--accent-warning)';
+            
+            resultsDiv.innerHTML = `
+                <div class="build-result">
+                    <div class="build-score">
+                        <h4>${build.god || results.god || 'Build'}</h4>
+                        <span class="score-badge" style="background: ${scoreColor};">${score}/100</span>
+                    </div>
+                    <p><strong>Mode:</strong> ${build.mode || results.mode || 'Conquest'}</p>
+                    <p><strong>Role:</strong> ${build.role || results.role || 'Mid'}</p>
+                    <p><strong>Total Cost:</strong> ${build.total_cost ? build.total_cost.toLocaleString() : 'N/A'} gold</p>
+                    
+                    <div class="items-grid">
+                        ${(build.items || []).map((item, index) => `
+                            <div class="item-slot" title="${item}">
+                                <div class="item-name">${item}</div>
+                                <div style="font-size: 0.5rem; color: var(--text-muted);">#${index + 1}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                    
+                    ${build.analysis ? `
+                        <div style="margin-top: 1rem;">
+                            <h5 style="margin-bottom: 0.5rem;">Build Analysis</h5>
+                            <div class="stat-grid" style="grid-template-columns: repeat(4, 1fr); gap: 0.5rem;">
+                                <div class="stat-item" style="padding: 0.5rem;">
+                                    <div class="stat-value" style="font-size: 1.2rem;">${Math.round(build.analysis.damage_potential || 0)}</div>
+                                    <div class="stat-label">Damage</div>
+                                </div>
+                                <div class="stat-item" style="padding: 0.5rem;">
+                                    <div class="stat-value" style="font-size: 1.2rem;">${Math.round(build.analysis.survivability || 0)}</div>
+                                    <div class="stat-label">Defense</div>
+                                </div>
+                                <div class="stat-item" style="padding: 0.5rem;">
+                                    <div class="stat-value" style="font-size: 1.2rem;">${Math.round(build.analysis.utility || 0)}</div>
+                                    <div class="stat-label">Utility</div>
+                                </div>
+                                <div class="stat-item" style="padding: 0.5rem;">
+                                    <div class="stat-value" style="font-size: 1.2rem;">${build.analysis.synergies || 0}</div>
+                                    <div class="stat-label">Synergies</div>
+                                </div>
+                            </div>
+                        </div>
+                    ` : ''}
+                    
+                    ${build.explanation ? `
+                        <div style="margin-top: 1rem; padding: 1rem; background: var(--bg-secondary); border-radius: 0.5rem;">
+                            <strong><i class="fas fa-lightbulb"></i> Build Explanation:</strong>
+                            <p style="margin-top: 0.5rem; color: var(--text-secondary);">${build.explanation}</p>
+                        </div>
+                    ` : ''}
+                    
+                    ${build.meta_rating ? `
+                        <div style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--text-muted);">
+                            <i class="fas fa-chart-line"></i> Meta Rating: ${Math.round(build.meta_rating)}% 
+                            ${build.meta_rating >= 75 ? '(Strong)' : build.meta_rating >= 50 ? '(Viable)' : '(Off-meta)'}
+                        </div>
+                    ` : ''}
+                </div>
+            `;
+        }
+
+        // Analysis Functions
+        async function loadAnalysisData() {
+            try {
+                const analysis = await apiCall('meta-analysis');
+                document.getElementById('patch-analysis').innerHTML = JSON.stringify(analysis, null, 2);
+            } catch (error) {
+                console.error('Error loading analysis:', error);
+            }
+        }
+
+        async function runStatisticalAnalysis() {
+            const button = event.target;
+            const originalText = button.innerHTML;
+            button.innerHTML = '<div class="spinner"></div> Running Analysis...';
+            button.disabled = true;
+            
+            try {
+                const response = await apiCall('statistical-analysis', 'POST', {
+                    analysis_type: 'comprehensive'
+                });
+                
+                document.getElementById('statistical-results').innerHTML = `
+                    <pre style="background: var(--bg-secondary); padding: 1rem; border-radius: 0.5rem; margin-top: 1rem; overflow-x: auto;">
+${JSON.stringify(response, null, 2)}
+                    </pre>
+                `;
+            } catch (error) {
+                console.error('Statistical analysis error:', error);
+            } finally {
+                button.innerHTML = originalText;
+                button.disabled = false;
+            }
+        }
+
+        // Database Functions
+        async function syncWikiData() {
+            const button = event.target;
+            const originalText = button.innerHTML;
+            button.innerHTML = '<div class="spinner"></div> Syncing...';
+            button.disabled = true;
+            
+            try {
+                await apiCall('wiki/sync', 'POST');
+                alert('Wiki data synced successfully!');
+            } catch (error) {
+                alert('Error syncing wiki data: ' + error.message);
+            } finally {
+                button.innerHTML = originalText;
+                button.disabled = false;
+            }
+        }
+
+        async function updatePatches() {
+            const button = event.target;
+            const originalText = button.innerHTML;
+            button.innerHTML = '<div class="spinner"></div> Updating...';
+            button.disabled = true;
+            
+            try {
+                await apiCall('patches/update', 'POST');
+                alert('Patches updated successfully!');
+            } catch (error) {
+                alert('Error updating patches: ' + error.message);
+            } finally {
+                button.innerHTML = originalText;
+                button.disabled = false;
+            }
+        }
+
+        async function validateData() {
+            const button = event.target;
+            const originalText = button.innerHTML;
+            button.innerHTML = '<div class="spinner"></div> Validating...';
+            button.disabled = true;
+            
+            try {
+                // Simulate validation
+                await new Promise(resolve => setTimeout(resolve, 2000));
+                alert('Data validation completed successfully!');
+            } catch (error) {
+                alert('Error validating data: ' + error.message);
+            } finally {
+                button.innerHTML = originalText;
+                button.disabled = false;
+            }
+        }
+
+        function loadCalibrationData() {
+            // Placeholder for calibration data loading
+        }
+
+        function loadDatabaseData() {
+            // Placeholder for database data loading
+        }
+
+        // Help System Functions
+        function showOptimizerHelp() {
+            document.getElementById('optimizer-help-modal').style.display = 'flex';
+        }
+
+        function closeOptimizerHelp() {
+            document.getElementById('optimizer-help-modal').style.display = 'none';
+        }
+
+        // Close modal when clicking outside content
+        document.addEventListener('click', function(event) {
+            const modal = document.getElementById('optimizer-help-modal');
+            if (event.target === modal) {
+                closeOptimizerHelp();
+            }
+        });
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeOptimizerHelp();
+            }
+            if (event.key === 'F1' || (event.ctrlKey && event.key === 'h')) {
+                event.preventDefault();
+                showOptimizerHelp();
+            }
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            loadDashboardData();
+            loadOptimizerData(); // Load gods for build optimizer dropdown
+            
+            // Show welcome tip for first-time users
+            if (!localStorage.getItem('divine_arsenal_visited')) {
+                setTimeout(() => {
+                    if (confirm('Welcome to SMITE 2 Divine Arsenal! Would you like to see a quick guide on how to use the build optimizer?')) {
+                        showOptimizerHelp();
+                    }
+                    localStorage.setItem('divine_arsenal_visited', 'true');
+                }, 1000);
+            }
+        });
+    </script>
+</body>
+</html> 

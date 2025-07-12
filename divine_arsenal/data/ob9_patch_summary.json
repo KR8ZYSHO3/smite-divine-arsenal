@@ -1,0 +1,28 @@
+{
+  "patch_info": {
+    "version": "OB9",
+    "title": "SMITE 2 Open Beta 9 - Jungle Focus",
+    "date": "2024-12-19",
+    "source": "compiled"
+  },
+  "item_changes": {
+    "removed": [],
+    "new": [
+      "Stone of Binding"
+    ],
+    "updated": [
+      "Spectral Armor"
+    ]
+  },
+  "meta_impact": {
+    "early_game_focus": "Jungle pressure becomes more important",
+    "anti_heal_priority": "80% healing reduction remains crucial",
+    "tank_utility": "Support tanks with counter-building excel"
+  },
+  "strategic_recommendations": [
+    "Prioritize jungle role in early game",
+    "Maintain anti-heal in every composition",
+    "Use Contagion for tank anti-heal",
+    "Focus on mid-game power spikes"
+  ]
+}

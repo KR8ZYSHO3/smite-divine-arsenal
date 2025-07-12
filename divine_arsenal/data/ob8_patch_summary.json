@@ -1,0 +1,32 @@
+{
+  "patch_info": {
+    "version": "OB8",
+    "title": "SMITE 2 Open Beta 8 - Major Meta Shift",
+    "date": "2024-12-15",
+    "source": "compiled"
+  },
+  "item_changes": {
+    "removed": [
+      "Dominance"
+    ],
+    "new": [
+      "Spear of Desolation"
+    ],
+    "updated": [
+      "Divine Ruin",
+      "Brawler's Beat Stick",
+      "Contagion"
+    ]
+  },
+  "meta_impact": {
+    "dominant_strategy": "Anti-heal meta with 80% reduction",
+    "penetration_focus": "Spear of Desolation replaces Dominance",
+    "sustain_shutdown": "Healing compositions heavily countered"
+  },
+  "strategic_recommendations": [
+    "Include 80% anti-heal in every composition",
+    "Prioritize Spear of Desolation for mages",
+    "Use anti-heal items to counter sustain",
+    "Focus on burst damage over sustain"
+  ]
+}

@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMITE 2 Divine Arsenal - Community Dashboard</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: #333;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo h1 {
+            color: #fff;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .logo i {
+            font-size: 2.5rem;
+            color: #ffd700;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: #fff;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 300px 1fr 350px;
+            gap: 20px;
+            height: calc(100vh - 140px);
+        }
+
+        .sidebar {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .chat-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .chat-header {
+            padding: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .message {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 12px 16px;
+            border-radius: 12px;
+            color: #fff;
+            max-width: 80%;
+        }
+
+        .message.own {
+            background: rgba(255, 215, 0, 0.3);
+            align-self: flex-end;
+        }
+
+        .message-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+
+        .message-sender {
+            font-weight: 600;
+            color: #ffd700;
+        }
+
+        .message-time {
+            opacity: 0.7;
+            font-size: 0.8rem;
+        }
+
+        .chat-input {
+            padding: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            gap: 10px;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 12px 16px;
+            border: none;
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            font-size: 1rem;
+        }
+
+        .chat-input input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .chat-input button {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 25px;
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            color: #333;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .chat-input button:hover {
+            transform: scale(1.05);
+        }
+
+        .section-title {
+            color: #fff;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .online-users {
+            margin-bottom: 30px;
+        }
+
+        .user-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .user-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            color: #fff;
+            transition: transform 0.2s;
+        }
+
+        .user-item:hover {
+            transform: translateX(5px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .user-avatar-small {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .user-details {
+            flex: 1;
+        }
+
+        .user-name {
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .user-role {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+
+        .online-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #4ade80;
+        }
+
+        .parties-section {
+            margin-bottom: 30px;
+        }
+
+        .party-item {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .party-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .party-name {
+            font-weight: 600;
+            color: #ffd700;
+        }
+
+        .party-members {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .party-description {
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+
+        .party-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            color: #333;
+            font-weight: 600;
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            color: #fff;
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #ffd700;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .login-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .login-modal {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            color: #fff;
+            max-width: 400px;
+            width: 90%;
+        }
+
+        .login-modal h2 {
+            margin-bottom: 20px;
+            color: #ffd700;
+        }
+
+        .login-input {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+
+        .login-input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            color: #333;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .login-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        @media (max-width: 1200px) {
+            .main-content {
+                grid-template-columns: 250px 1fr 300px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto 1fr auto;
+            }
+            
+            .header {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <i class="fas fa-shield-alt"></i>
+                <h1>Divine Arsenal</h1>
+            </div>
+            <div class="user-info" id="userInfo">
+                <div class="user-avatar" id="userAvatar">?</div>
+                <div>
+                    <div id="userName">Not logged in</div>
+                    <div id="userRank" style="font-size: 0.9rem; opacity: 0.8;">Click to login</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <!-- Left Sidebar - Online Users & Parties -->
+            <div class="sidebar">
+                <div class="online-users">
+                    <div class="section-title">
+                        <i class="fas fa-users"></i>
+                        Online Players
+                    </div>
+                    <div class="user-list" id="onlineUsersList">
+                        <div style="color: rgba(255,255,255,0.7); text-align: center; padding: 20px;">
+                            Loading online users...
+                        </div>
+                    </div>
+                </div>
+
+                <div class="parties-section">
+                    <div class="section-title">
+                        <i class="fas fa-gamepad"></i>
+                        Active Parties
+                    </div>
+                    <div id="partiesList">
+                        <div style="color: rgba(255,255,255,0.7); text-align: center; padding: 20px;">
+                            Loading parties...
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Chat Area -->
+            <div class="chat-container">
+                <div class="chat-header">
+                    <i class="fas fa-comments"></i>
+                    Global Chat
+                </div>
+                <div class="chat-messages" id="chatMessages">
+                    <div style="color: rgba(255,255,255,0.7); text-align: center; padding: 20px;">
+                        Welcome to Divine Arsenal! Login to start chatting.
+                    </div>
+                </div>
+                <div class="chat-input">
+                    <input type="text" id="messageInput" placeholder="Type your message..." disabled>
+                    <button id="sendButton" disabled>
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Right Sidebar - Stats & Actions -->
+            <div class="sidebar">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number" id="onlineCount">0</div>
+                        <div class="stat-label">Online</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="partyCount">0</div>
+                        <div class="stat-label">Parties</div>
+                    </div>
+                </div>
+
+                <div class="section-title">
+                    <i class="fas fa-chart-bar"></i>
+                    Community Stats
+                </div>
+                <div id="communityStats" style="color: rgba(255,255,255,0.8); font-size: 0.9rem;">
+                    Loading stats...
+                </div>
+
+                <div style="margin-top: 30px;">
+                    <div class="section-title">
+                        <i class="fas fa-plus-circle"></i>
+                        Quick Actions
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <button class="btn btn-primary" id="createPartyBtn" disabled>
+                            <i class="fas fa-plus"></i> Create Party
+                        </button>
+                        <button class="btn btn-secondary" id="refreshBtn">
+                            <i class="fas fa-sync-alt"></i> Refresh
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Overlay -->
+    <div class="login-overlay" id="loginOverlay">
+        <div class="login-modal">
+            <h2><i class="fas fa-sign-in-alt"></i> Login with Tracker.gg</h2>
+            <p style="margin-bottom: 20px; opacity: 0.8;">
+                Enter your SMITE 2 Tracker.gg username to join the community
+            </p>
+            <input type="text" class="login-input" id="trackerUsername" 
+                   placeholder="Your Tracker.gg username">
+            <button class="login-btn" id="loginBtn">
+                <i class="fas fa-sign-in-alt"></i> Login
+            </button>
+            <div id="loginError" style="color: #ff6b6b; margin-top: 10px; display: none;"></div>
+        </div>
+    </div>
+
+    <script>
+        // Global variables
+        let currentUser = null;
+        let authToken = null;
+        const API_BASE = '/api/community';
+
+        // DOM elements
+        const loginOverlay = document.getElementById('loginOverlay');
+        const loginBtn = document.getElementById('loginBtn');
+        const trackerUsername = document.getElementById('trackerUsername');
+        const loginError = document.getElementById('loginError');
+        const userInfo = document.getElementById('userInfo');
+        const userName = document.getElementById('userName');
+        const userRank = document.getElementById('userRank');
+        const userAvatar = document.getElementById('userAvatar');
+        const onlineUsersList = document.getElementById('onlineUsersList');
+        const partiesList = document.getElementById('partiesList');
+        const chatMessages = document.getElementById('chatMessages');
+        const messageInput = document.getElementById('messageInput');
+        const sendButton = document.getElementById('sendButton');
+        const onlineCount = document.getElementById('onlineCount');
+        const partyCount = document.getElementById('partyCount');
+        const communityStats = document.getElementById('communityStats');
+        const createPartyBtn = document.getElementById('createPartyBtn');
+        const refreshBtn = document.getElementById('refreshBtn');
+
+        // Event listeners
+        loginBtn.addEventListener('click', handleLogin);
+        trackerUsername.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') handleLogin();
+        });
+        sendButton.addEventListener('click', sendMessage);
+        messageInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') sendMessage();
+        });
+        refreshBtn.addEventListener('click', refreshData);
+        createPartyBtn.addEventListener('click', createParty);
+
+        // Initialize
+        checkAuthStatus();
+        loadInitialData();
+
+        async function checkAuthStatus() {
+            const token = localStorage.getItem('authToken');
+            if (token) {
+                try {
+                    const response = await fetch(`${API_BASE}/auth/profile`, {
+                        headers: { 'Authorization': `Bearer ${token}` }
+                    });
+                    if (response.ok) {
+                        const data = await response.json();
+                        currentUser = data.user;
+                        authToken = token;
+                        updateUI();
+                        return;
+                    }
+                } catch (error) {
+                    console.error('Auth check failed:', error);
+                }
+            }
+            showLoginOverlay();
+        }
+
+        async function handleLogin() {
+            const username = trackerUsername.value.trim();
+            if (!username) {
+                showError('Please enter your Tracker.gg username');
+                return;
+            }
+
+            loginBtn.disabled = true;
+            loginBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Logging in...';
+
+            try {
+                const response = await fetch(`${API_BASE}/auth/login`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ tracker_username: username })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    currentUser = data.user;
+                    authToken = data.token;
+                    localStorage.setItem('authToken', authToken);
+                    hideLoginOverlay();
+                    updateUI();
+                    loadInitialData();
+                } else {
+                    showError(data.error || 'Login failed');
+                }
+            } catch (error) {
+                showError('Network error. Please try again.');
+            } finally {
+                loginBtn.disabled = false;
+                loginBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Login';
+            }
+        }
+
+        function showLoginOverlay() {
+            loginOverlay.classList.remove('hidden');
+        }
+
+        function hideLoginOverlay() {
+            loginOverlay.classList.add('hidden');
+        }
+
+        function showError(message) {
+            loginError.textContent = message;
+            loginError.style.display = 'block';
+            setTimeout(() => {
+                loginError.style.display = 'none';
+            }, 5000);
+        }
+
+        function updateUI() {
+            if (currentUser) {
+                userName.textContent = currentUser.username;
+                userRank.textContent = currentUser.rank || 'Unranked';
+                userAvatar.textContent = currentUser.username.charAt(0).toUpperCase();
+                
+                messageInput.disabled = false;
+                sendButton.disabled = false;
+                createPartyBtn.disabled = false;
+            } else {
+                userName.textContent = 'Not logged in';
+                userRank.textContent = 'Click to login';
+                userAvatar.textContent = '?';
+                
+                messageInput.disabled = true;
+                sendButton.disabled = true;
+                createPartyBtn.disabled = true;
+            }
+        }
+
+        async function loadInitialData() {
+            await Promise.all([
+                loadOnlineUsers(),
+                loadParties(),
+                loadCommunityStats(),
+                loadChatMessages()
+            ]);
+        }
+
+        async function loadOnlineUsers() {
+            try {
+                const response = await fetch(`${API_BASE}/users/online`);
+                const data = await response.json();
+                
+                if (response.ok) {
+                    renderOnlineUsers(data.users);
+                    onlineCount.textContent = data.count;
+                }
+            } catch (error) {
+                console.error('Failed to load online users:', error);
+            }
+        }
+
+        function renderOnlineUsers(users) {
+            if (users.length === 0) {
+                onlineUsersList.innerHTML = '<div style="color: rgba(255,255,255,0.7); text-align: center; padding: 20px;">No users online</div>';
+                return;
+            }
+
+            onlineUsersList.innerHTML = users.map(user => `
+                <div class="user-item">
+                    <div class="user-avatar-small">${user.username.charAt(0).toUpperCase()}</div>
+                    <div class="user-details">
+                        <div class="user-name">${user.username}</div>
+                        <div class="user-role">${user.favorite_role || 'Unknown'} • ${user.rank || 'Unranked'}</div>
+                    </div>
+                    <div class="online-indicator"></div>
+                </div>
+            `).join('');
+        }
+
+        async function loadParties() {
+            try {
+                const response = await fetch(`${API_BASE}/parties`);
+                const data = await response.json();
+                
+                if (response.ok) {
+                    renderParties(data.parties);
+                    partyCount.textContent = data.count;
+                }
+            } catch (error) {
+                console.error('Failed to load parties:', error);
+            }
+        }
+
+        function renderParties(parties) {
+            if (parties.length === 0) {
+                partiesList.innerHTML = '<div style="color: rgba(255,255,255,0.7); text-align: center; padding: 20px;">No active parties</div>';
+                return;
+            }
+
+            partiesList.innerHTML = parties.map(party => `
+                <div class="party-item">
+                    <div class="party-header">
+                        <div class="party-name">${party.name}</div>
+                        <div class="party-members">${party.member_count}/${party.max_members}</div>
+                    </div>
+                    <div class="party-description">${party.description || 'No description'}</div>
+                    <div class="party-actions">
+                        <button class="btn btn-primary" onclick="joinParty('${party.party_id}')">
+                            <i class="fas fa-sign-in-alt"></i> Join
+                        </button>
+                        <button class="btn btn-secondary" onclick="viewPartyMembers('${party.party_id}')">
+                            <i class="fas fa-users"></i> Members
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        async function loadCommunityStats() {
+            try {
+                const response = await fetch(`${API_BASE}/stats`);
+                const data = await response.json();
+                
+                if (response.ok) {
+                    const stats = data.stats;
+                    communityStats.innerHTML = `
+                        <div style="margin-bottom: 10px;">
+                            <strong>Total Users:</strong> ${stats.total_users}
+                        </div>
+                        <div style="margin-bottom: 10px;">
+                            <strong>Online:</strong> ${stats.online_percentage}%
+                        </div>
+                        <div style="margin-bottom: 10px;">
+                            <strong>Active Parties:</strong> ${stats.active_parties}
+                        </div>
+                        <div style="margin-bottom: 10px;">
+                            <strong>Recent Messages:</strong> ${stats.recent_messages}
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                console.error('Failed to load stats:', error);
+            }
+        }
+
+        async function loadChatMessages() {
+            try {
+                const response = await fetch(`${API_BASE}/chat/messages/global`);
+                const data = await response.json();
+                
+                if (response.ok) {
+                    renderChatMessages(data.messages);
+                }
+            } catch (error) {
+                console.error('Failed to load chat messages:', error);
+            }
+        }
+
+        function renderChatMessages(messages) {
+            if (messages.length === 0) {
+                chatMessages.innerHTML = '<div style="color: rgba(255,255,255,0.7); text-align: center; padding: 20px;">No messages yet</div>';
+                return;
+            }
+
+            chatMessages.innerHTML = messages.map(message => `
+                <div class="message ${message.sender_id === currentUser?.user_id ? 'own' : ''}">
+                    <div class="message-header">
+                        <span class="message-sender">${message.sender_name}</span>
+                        <span class="message-time">${new Date(message.created_at).toLocaleTimeString()}</span>
+                    </div>
+                    <div class="message-content">${message.message}</div>
+                </div>
+            `).join('');
+            
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        async function sendMessage() {
+            const message = messageInput.value.trim();
+            if (!message || !currentUser) return;
+
+            try {
+                const response = await fetch(`${API_BASE}/chat/send`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${authToken}`
+                    },
+                    body: JSON.stringify({
+                        room_id: 'global',
+                        message: message,
+                        message_type: 'text'
+                    })
+                });
+
+                if (response.ok) {
+                    messageInput.value = '';
+                    loadChatMessages();
+                }
+            } catch (error) {
+                console.error('Failed to send message:', error);
+            }
+        }
+
+        async function joinParty(partyId) {
+            if (!currentUser) return;
+
+            try {
+                const response = await fetch(`${API_BASE}/parties/${partyId}/join`, {
+                    method: 'POST',
+                    headers: { 'Authorization': `Bearer ${authToken}` }
+                });
+
+                const data = await response.json();
+                if (response.ok) {
+                    alert('Successfully joined party!');
+                    loadParties();
+                } else {
+                    alert(data.error || 'Failed to join party');
+                }
+            } catch (error) {
+                console.error('Failed to join party:', error);
+            }
+        }
+
+        async function createParty() {
+            if (!currentUser) return;
+
+            const name = prompt('Enter party name:');
+            if (!name) return;
+
+            const description = prompt('Enter party description (optional):');
+            const gameMode = prompt('Enter game mode (conquest, arena, etc.):') || 'conquest';
+
+            try {
+                const response = await fetch(`${API_BASE}/parties`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${authToken}`
+                    },
+                    body: JSON.stringify({
+                        name: name,
+                        description: description || '',
+                        game_mode: gameMode,
+                        max_members: 5,
+                        skill_level: 'any',
+                        is_public: true
+                    })
+                });
+
+                const data = await response.json();
+                if (response.ok) {
+                    alert('Party created successfully!');
+                    loadParties();
+                } else {
+                    alert(data.error || 'Failed to create party');
+                }
+            } catch (error) {
+                console.error('Failed to create party:', error);
+            }
+        }
+
+        function refreshData() {
+            loadInitialData();
+        }
+
+        function viewPartyMembers(partyId) {
+            // This would open a modal or navigate to show party members
+            alert('Party members feature coming soon!');
+        }
+
+        // Auto-refresh every 30 seconds
+        setInterval(() => {
+            if (currentUser) {
+                loadOnlineUsers();
+                loadParties();
+                loadCommunityStats();
+            }
+        }, 30000);
+    </script>
+</body>
+</html> 

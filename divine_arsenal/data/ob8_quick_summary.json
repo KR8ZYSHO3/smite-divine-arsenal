@@ -1,0 +1,27 @@
+{
+  "patch_info": {
+    "version": "OB8",
+    "title": "SMITE 2 Open Beta 8",
+    "date": "2024-12-15",
+    "source": "compiled"
+  },
+  "major_changes": {
+    "dominance_removed": "Major item ecosystem shift",
+    "anti_heal_buff": "80% healing reduction across all anti-heal items",
+    "penetration_meta": "New focus on penetration builds"
+  },
+  "updated_items": {
+    "Divine Ruin": "80% anti-heal, 120 power, 2800 cost",
+    "Brawler's Beat Stick": "80% anti-heal, 65 physical power, 2500 cost",
+    "Contagion": "80% anti-heal, 60 protection, 400 health, 2200 cost"
+  },
+  "removed_items": [
+    "Dominance"
+  ],
+  "strategic_recommendations": [
+    "Include 80% anti-heal in every composition",
+    "Prioritize penetration builds for mages",
+    "Use anti-heal items to counter sustain",
+    "Focus on burst damage over sustain"
+  ]
+}

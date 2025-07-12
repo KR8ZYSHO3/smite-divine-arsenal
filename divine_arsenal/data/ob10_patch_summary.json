@@ -1,0 +1,27 @@
+{
+  "patch_info": {
+    "version": "OB10",
+    "title": "SMITE 2 Open Beta 10 - Carry Rebalance",
+    "date": "2024-12-23",
+    "source": "compiled"
+  },
+  "item_changes": {
+    "removed": [],
+    "new": [],
+    "updated": [
+      "Deathbringer",
+      "Rage"
+    ]
+  },
+  "meta_impact": {
+    "mid_game_focus": "Reduced late game carry dominance",
+    "team_coordination": "More emphasis on team play",
+    "build_diversity": "More viable carry build options"
+  },
+  "strategic_recommendations": [
+    "Focus on mid-game team coordination",
+    "Build for consistent damage over burst",
+    "Prioritize utility over pure damage",
+    "Coordinate with team for objectives"
+  ]
+}
