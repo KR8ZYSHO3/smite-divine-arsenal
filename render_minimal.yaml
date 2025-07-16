@@ -1,0 +1,13 @@
+services:
+  # Minimal Web Service Test
+  - type: web
+    name: smite-divine-arsenal-minimal
+    env: python
+    plan: hobby
+    region: oregon
+    buildCommand: pip install flask
+    startCommand: python minimal_app.py
+    healthCheckPath: /health
+    envVars:
+      - key: ENVIRONMENT
+        value: production 
