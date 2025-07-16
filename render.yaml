@@ -22,9 +22,9 @@ services:
     plan: hobby
     region: oregon
     buildCommand: |
-      pip install flask flask-sqlalchemy flask-migrate flask-cors psycopg2-binary gunicorn requests beautifulsoup4 python-dotenv PyJWT redis sqlalchemy
+      pip install flask gunicorn
     startCommand: |
-      cd divine_arsenal/backend && gunicorn --bind 0.0.0.0:$PORT app_with_migrations:app
+      gunicorn --bind 0.0.0.0:$PORT minimal_app:app
     healthCheckPath: /health
     envVars:
       - key: ENVIRONMENT
