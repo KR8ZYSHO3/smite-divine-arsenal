@@ -22,9 +22,7 @@ services:
     plan: hobby
     region: oregon
     buildCommand: |
-      cd divine_arsenal/backend && 
-      pip install -r requirements.txt && 
-      pip install gunicorn psycopg2-binary sqlalchemy flask-migrate flask-sqlalchemy redis
+      pip install -r requirements_production.txt
     startCommand: |
       cd divine_arsenal/backend && 
       gunicorn --bind 0.0.0.0:$PORT --workers 2 --timeout 120 --max-requests 1000 --max-requests-jitter 100 app_with_migrations:app
