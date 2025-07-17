@@ -5,7 +5,7 @@ services:
     plan: hobby
     region: oregon
     buildCommand: pip install flask gunicorn
-    startCommand: gunicorn --bind 0.0.0.0:$PORT simple_deploy:app
+    startCommand: gunicorn --bind 0.0.0.0:$PORT app:app
     healthCheckPath: /health
     envVars:
       - key: ENVIRONMENT
