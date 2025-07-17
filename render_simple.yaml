@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: smite-divine-arsenal
+    name: smite-divine-arsenal-simple
     env: python
     plan: hobby
     region: oregon
