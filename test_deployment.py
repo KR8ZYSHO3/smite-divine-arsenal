@@ -67,10 +67,10 @@ def test_deployment(base_url):
     return passed == total
 
 if __name__ == "__main__":
-    # Replace with your actual Render URL once deployed
-    render_url = "https://your-app-name.onrender.com"
+    # Default Render URL - replace with your actual URL after deployment
+    render_url = "https://smite-divine-arsenal.onrender.com"
     
-    print("Enter your Render app URL:")
+    print("Enter your Render app URL (or press Enter to use default):")
     url = input().strip() or render_url
     
     success = test_deployment(url)
